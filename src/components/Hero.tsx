@@ -62,13 +62,13 @@ export function Hero() {
       
       {/* Hero Content with Enhanced Premium Styling */}
       <div className="relative z-10 text-center px-4 sm:px-6 max-w-6xl mx-auto">
-        {/* Premium Pre-title Badge with Glassmorphism - Fixed Hover Visibility */}
-        <div className="inline-flex items-center px-8 py-4 glass-premium rounded-full mb-10 shadow-2xl animate-fade-in-up border-glow premium-badge hover:scale-105 transition-transform duration-300">
-          <span className="text-accent text-sm font-semibold tracking-wider uppercase gradient-text-gold hover:text-accent hover:text-shadow-gold transition-all duration-300">Est. 2010 • Award-Winning Design</span>
+        {/* Premium Pre-title Badge with Glassmorphism - Fixed Hover State */}
+        <div className="group inline-flex items-center px-8 py-4 glass-premium rounded-full mb-10 shadow-2xl animate-fade-in-up border-glow premium-badge hover:scale-105 hover:bg-accent hover:border-accent transition-all duration-300">
+          <span className="text-accent text-sm font-semibold tracking-wider uppercase group-hover:text-white group-hover:text-shadow-white transition-all duration-300">Est. 2010 • Award-Winning Design</span>
         </div>
         
         {/* Main Heading with Enhanced Premium Typography and Readability */}
-        <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white mb-8 leading-tight tracking-tight text-shadow-premium animate-fade-in-up animation-delay-200 safe-hover-text">
+        <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white mb-8 leading-tight tracking-tight text-shadow-premium animate-fade-in-up animation-delay-200 hover-text-enhance">
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-accent drop-shadow-none">
             Designing
           </span>
@@ -79,7 +79,7 @@ export function Hero() {
         </h1>
         
         {/* Premium Subheading with Enhanced Readability */}
-        <p className="text-xl sm:text-2xl md:text-3xl text-white mb-10 max-w-4xl mx-auto leading-relaxed font-light text-shadow-premium animate-fade-in-up animation-delay-400 safe-hover-text">
+        <p className="text-xl sm:text-2xl md:text-3xl text-white mb-10 max-w-4xl mx-auto leading-relaxed font-light text-shadow-premium animate-fade-in-up animation-delay-400 hover-text-enhance">
           Welcome to Manor House Interior Design
         </p>
         
@@ -90,7 +90,7 @@ export function Hero() {
             className="group w-full sm:w-auto px-10 py-5 bg-accent hover:bg-highlight text-white font-bold text-lg rounded-xl transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-accent/30 focus:ring-offset-2 focus:ring-offset-white shadow-2xl hover:shadow-3xl transform hover:scale-105 hover:-translate-y-1 btn-enhanced border-glow"
             style={{ cursor: 'pointer' }}
           >
-            <span className="relative z-10 flex items-center gap-3 safe-hover-text">
+            <span className="relative z-10 flex items-center gap-3 hover-text-enhance">
               Explore Portfolio
               <span className="group-hover:translate-x-2 transition-transform duration-300 text-xl">→</span>
             </span>
@@ -101,7 +101,7 @@ export function Hero() {
             className="group w-full sm:w-auto px-10 py-5 glass-premium border-2 border-white/30 text-white hover:bg-white/20 font-bold text-lg rounded-xl transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-white shadow-2xl hover:shadow-3xl transform hover:scale-105 hover:-translate-y-1 btn-enhanced border-glow"
             style={{ cursor: 'pointer' }}
           >
-            <span className="relative z-10 flex items-center gap-3 safe-hover-text">
+            <span className="relative z-10 flex items-center gap-3 hover-text-enhance">
               Book Consultation
               <span className="group-hover:translate-x-2 transition-transform duration-300 text-xl">→</span>
             </span>
@@ -112,15 +112,15 @@ export function Hero() {
         <div className="flex flex-wrap justify-center items-center gap-8 text-white text-sm animate-fade-in-up animation-delay-800">
           <span className="flex items-center gap-3 glass-dark px-4 py-2 rounded-full border border-accent/30 hover:bg-accent/20 transition-colors duration-300 hover-lift premium-badge">
             <span className="w-3 h-3 bg-accent rounded-full animate-pulse"></span>
-            <span className="safe-hover-text">500+ Projects Completed</span>
+            <span className="hover-text-enhance">500+ Projects Completed</span>
           </span>
           <span className="flex items-center gap-3 glass-dark px-4 py-2 rounded-full border border-accent/30 hover:bg-accent/20 transition-colors duration-300 hover-lift premium-badge">
             <span className="w-3 h-3 bg-accent rounded-full animate-pulse"></span>
-            <span className="safe-hover-text">15+ Years Experience</span>
+            <span className="hover-text-enhance">15+ Years Experience</span>
           </span>
           <span className="flex items-center gap-3 glass-dark px-4 py-2 rounded-full border border-accent/30 hover:bg-accent/20 transition-colors duration-300 hover-lift premium-badge">
             <span className="w-3 h-3 bg-accent rounded-full animate-pulse"></span>
-            <span className="safe-hover-text">98% Client Satisfaction</span>
+            <span className="hover-text-enhance">98% Client Satisfaction</span>
           </span>
         </div>
       </div>
