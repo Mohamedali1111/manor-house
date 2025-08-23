@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import './globals.css'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { PerformanceMonitor } from '@/components/PerformanceMonitor'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -10,8 +11,16 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Manor House',
-  description: 'A beautiful manor house application',
+  title: 'Manor House - Premium Interior Design',
+  description: 'Award-winning interior design services with premium quality and exceptional craftsmanship. Transform your space with Manor House Interior Design.',
+  keywords: 'interior design, luxury interior, premium design, space planning, electrical plumbing, consultation',
+  authors: [{ name: 'Manor House Interior Design' }],
+  openGraph: {
+    title: 'Manor House - Premium Interior Design',
+    description: 'Award-winning interior design services with premium quality and exceptional craftsmanship.',
+    type: 'website',
+    locale: 'en_US',
+  },
 }
 
 export default function RootLayout({
@@ -22,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} font-sans antialiased`}>
+        <PerformanceMonitor />
         <ThemeToggle />
         {children}
       </body>

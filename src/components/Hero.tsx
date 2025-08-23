@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 export function Hero() {
   const router = useRouter()
@@ -15,44 +16,70 @@ export function Hero() {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Full-screen Background Image with Multiple Premium Images */}
+      {/* Optimized Background Images with Next.js Image Component */}
       <div className="absolute inset-0">
         {/* Main Background Image - Luxury Interior */}
-        <div className="absolute inset-0 bg-[url('/hero-luxury-interior.jpg')] bg-cover bg-center bg-no-repeat"></div>
-        
-        {/* Fallback Premium Image */}
-        <div className="absolute inset-0 bg-[url('/hero-premium-living.jpg')] bg-cover bg-center bg-no-repeat opacity-0 hover:opacity-100 transition-opacity duration-1000"></div>
-        
-        {/* Sophisticated Light Overlay for Premium Feel */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-black/20 to-black/40"></div>
-        
-        {/* Premium accent overlay with light degrees */}
-        <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-highlight/5"></div>
-        
-        {/* Subtle light pattern overlay */}
-        <div className="absolute inset-0 bg-[url('/subtle-light-pattern.png')] opacity-5 bg-repeat"></div>
-      </div>
-      
-      {/* Hero Content with Enhanced Professional Styling */}
-      <div className="relative z-10 text-center px-4 sm:px-6 max-w-6xl mx-auto">
-        {/* Premium Pre-title Badge */}
-        <div className="inline-flex items-center px-8 py-4 bg-white/95 backdrop-blur-md border border-accent/30 rounded-full mb-10 shadow-2xl animate-fade-in-up">
-          <span className="text-accent text-sm font-semibold tracking-wider uppercase">Est. 2010 • Award-Winning Design</span>
+        <div className="absolute inset-0">
+          <Image
+            src="/hero-luxury-interior.jpg"
+            alt="Luxury Interior Design - Manor House"
+            fill
+            priority
+            quality={90}
+            className="object-cover object-center"
+            sizes="100vw"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+          />
         </div>
         
-        {/* Main Heading with Premium Typography */}
-        <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white mb-8 leading-tight tracking-tight drop-shadow-2xl animate-fade-in-up animation-delay-200">
+        {/* Fallback Premium Image - Lazy Loaded */}
+        <div className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-1000">
+          <Image
+            src="/hero-premium-living.jpg"
+            alt="Premium Living Space - Manor House"
+            fill
+            quality={85}
+            className="object-cover object-center"
+            sizes="100vw"
+            loading="lazy"
+          />
+        </div>
+        
+        {/* Enhanced Premium Gradient Overlays for Better Text Readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-accent/15 via-transparent to-highlight/15"></div>
+        
+        {/* Premium Radial Overlay for Center Focus */}
+        <div className="absolute inset-0 bg-radial-gradient from-transparent via-black/20 to-black/60"></div>
+        
+        {/* Subtle Pattern Overlay */}
+        <div className="absolute inset-0 bg-[url('/subtle-light-pattern.png')] opacity-15"></div>
+        
+        {/* Premium Light Rays Effect */}
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-accent/5 to-transparent opacity-30"></div>
+      </div>
+      
+      {/* Hero Content with Enhanced Premium Styling */}
+      <div className="relative z-10 text-center px-4 sm:px-6 max-w-6xl mx-auto">
+        {/* Premium Pre-title Badge with Glassmorphism */}
+        <div className="inline-flex items-center px-8 py-4 glass-premium rounded-full mb-10 shadow-2xl animate-fade-in-up border-glow">
+          <span className="text-accent text-sm font-semibold tracking-wider uppercase gradient-text-gold">Est. 2010 • Award-Winning Design</span>
+        </div>
+        
+        {/* Main Heading with Enhanced Premium Typography and Readability */}
+        <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white mb-8 leading-tight tracking-tight text-shadow-premium animate-fade-in-up animation-delay-200">
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-accent drop-shadow-none">
             Designing
           </span>
           <br />
-          <span className="text-accent drop-shadow-none font-light">Timeless</span>
+          <span className="text-accent drop-shadow-none font-light text-shadow-gold">Timeless</span>
           <br />
           <span className="text-white drop-shadow-none">Spaces</span>
         </h1>
         
-        {/* Premium Subheading */}
-        <p className="text-xl sm:text-2xl md:text-3xl text-white/95 mb-10 max-w-4xl mx-auto leading-relaxed font-light drop-shadow-lg animate-fade-in-up animation-delay-400">
+        {/* Premium Subheading with Enhanced Readability */}
+        <p className="text-xl sm:text-2xl md:text-3xl text-white mb-10 max-w-4xl mx-auto leading-relaxed font-light text-shadow-premium animate-fade-in-up animation-delay-400">
           Welcome to Manor House Interior Design
         </p>
         
@@ -60,7 +87,7 @@ export function Hero() {
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12 animate-fade-in-up animation-delay-600">
           <button 
             onClick={handlePortfolioClick}
-            className="group w-full sm:w-auto px-10 py-5 bg-accent hover:bg-highlight text-white font-bold text-lg rounded-xl transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-accent/30 focus:ring-offset-2 focus:ring-offset-white shadow-2xl hover:shadow-3xl transform hover:scale-105 hover:-translate-y-1"
+            className="group w-full sm:w-auto px-10 py-5 bg-accent hover:bg-highlight text-white font-bold text-lg rounded-xl transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-accent/30 focus:ring-offset-2 focus:ring-offset-white shadow-2xl hover:shadow-3xl transform hover:scale-105 hover:-translate-y-1 premium-button border-glow"
           >
             <span className="relative z-10 flex items-center gap-3">
               Explore Portfolio
@@ -70,7 +97,7 @@ export function Hero() {
           
           <button 
             onClick={handleConsultationClick}
-            className="group w-full sm:w-auto px-10 py-5 bg-white/95 backdrop-blur-md border-2 border-white text-foreground hover:bg-white font-bold text-lg rounded-xl transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-white shadow-2xl hover:shadow-3xl transform hover:scale-105 hover:-translate-y-1"
+            className="group w-full sm:w-auto px-10 py-5 glass-premium border-2 border-white/30 text-white hover:bg-white/20 font-bold text-lg rounded-xl transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-white shadow-2xl hover:shadow-3xl transform hover:scale-105 hover:-translate-y-1 premium-button border-glow"
           >
             <span className="relative z-10 flex items-center gap-3">
               Book Consultation
@@ -79,22 +106,30 @@ export function Hero() {
           </button>
         </div>
         
-        {/* Premium Trust Indicators */}
-        <div className="flex flex-wrap justify-center items-center gap-8 text-white/80 text-sm animate-fade-in-up animation-delay-800">
-          <span className="flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 hover:bg-white/20 transition-colors duration-300">
+        {/* Premium Trust Indicators with Enhanced Styling */}
+        <div className="flex flex-wrap justify-center items-center gap-8 text-white text-sm animate-fade-in-up animation-delay-800">
+          <span className="flex items-center gap-3 glass-dark px-4 py-2 rounded-full border border-accent/30 hover:bg-accent/20 transition-colors duration-300 hover-lift">
             <span className="w-3 h-3 bg-accent rounded-full animate-pulse"></span>
             500+ Projects Completed
           </span>
-          <span className="flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 hover:bg-white/20 transition-colors duration-300">
+          <span className="flex items-center gap-3 glass-dark px-4 py-2 rounded-full border border-accent/30 hover:bg-accent/20 transition-colors duration-300 hover-lift">
             <span className="w-3 h-3 bg-accent rounded-full animate-pulse"></span>
             15+ Years Experience
           </span>
-          <span className="flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 hover:bg-white/20 transition-colors duration-300">
+          <span className="flex items-center gap-3 glass-dark px-4 py-2 rounded-full border border-accent/30 hover:bg-accent/20 transition-colors duration-300 hover-lift">
             <span className="w-3 h-3 bg-accent rounded-full animate-pulse"></span>
             98% Client Satisfaction
           </span>
         </div>
       </div>
+      
+      {/* Premium Decorative Elements */}
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent"></div>
+      
+      {/* Floating Premium Accent Elements */}
+      <div className="absolute top-20 left-10 w-2 h-20 bg-gradient-to-b from-accent to-transparent opacity-60 animate-pulse"></div>
+      <div className="absolute top-40 right-16 w-1 h-16 bg-gradient-to-b from-highlight to-transparent opacity-40 animate-pulse animation-delay-400"></div>
+      <div className="absolute bottom-40 left-20 w-1 h-12 bg-gradient-to-b from-accent to-transparent opacity-50 animate-pulse animation-delay-800"></div>
     </section>
   )
 }
