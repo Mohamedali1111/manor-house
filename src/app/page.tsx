@@ -37,13 +37,13 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* Enhanced Section Header */}
           <div className="text-center mb-20">
-            <div className="inline-flex items-center px-6 py-2 bg-accent/10 border border-accent/20 rounded-full mb-6">
-              <span className="text-accent text-sm font-semibold">Our Expertise</span>
+            <div className="inline-flex items-center px-6 py-2 bg-accent/10 border border-accent/20 rounded-full mb-6 premium-badge">
+              <span className="text-accent text-sm font-semibold hover-text-enhance">Our Expertise</span>
             </div>
-            <h2 className="text-5xl sm:text-6xl font-bold text-foreground mb-6">
+            <h2 className="text-5xl sm:text-6xl font-bold text-foreground mb-6 hover-text-enhance">
               Our <span className="gradient-text-gold">Services</span>
             </h2>
-            <p className="text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed hover-text-enhance">
               Comprehensive interior design solutions tailored to your unique vision and lifestyle
             </p>
           </div>
@@ -74,13 +74,13 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* Enhanced Section Header */}
           <div className="text-center mb-20">
-            <div className="inline-flex items-center px-6 py-2 bg-accent/10 border border-accent/20 rounded-full mb-6">
-              <span className="text-accent text-sm font-semibold">Portfolio</span>
+            <div className="inline-flex items-center px-6 py-2 bg-accent/10 border border-accent/20 rounded-full mb-6 premium-badge">
+              <span className="text-accent text-sm font-semibold hover-text-enhance">Portfolio</span>
             </div>
-            <h2 className="text-5xl sm:text-6xl font-bold text-foreground mb-6">
+            <h2 className="text-5xl sm:text-6xl font-bold text-foreground mb-6 hover-text-enhance">
               Featured <span className="gradient-text-gold">Projects</span>
             </h2>
-            <p className="text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed hover-text-enhance">
               Discover our latest interior design transformations that showcase innovation and excellence
             </p>
           </div>
@@ -126,14 +126,14 @@ export default function Home() {
         {/* Premium Content Container */}
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           {/* Premium Badge */}
-          <div className="inline-flex items-center px-6 py-2 bg-accent/10 border border-accent/20 rounded-full mb-8">
-            <span className="text-accent text-sm font-semibold">Get Started</span>
+          <div className="inline-flex items-center px-6 py-2 bg-accent/10 border border-accent/20 rounded-full mb-8 premium-badge">
+            <span className="text-accent text-sm font-semibold hover-text-enhance">Get Started</span>
           </div>
           
-          <h2 className="text-5xl sm:text-6xl font-bold text-foreground mb-8">
+          <h2 className="text-5xl sm:text-6xl font-bold text-foreground mb-8 hover-text-enhance">
             Ready to Transform Your <span className="gradient-text-gold">Space</span>?
           </h2>
-          <p className="text-xl sm:text-2xl text-foreground/80 mb-10 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl sm:text-2xl text-foreground/80 mb-10 max-w-3xl mx-auto leading-relaxed hover-text-enhance">
             Let's collaborate to create an interior that reflects your personality, enhances your lifestyle, and exceeds your expectations.
           </p>
           
@@ -160,15 +160,15 @@ export default function Home() {
           {/* Enhanced Additional Info */}
           <div className="mt-10 p-6 glass-premium rounded-2xl border border-accent/20">
             <div className="flex flex-wrap justify-center items-center gap-6 text-base text-foreground/70">
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-2 hover-text-enhance">
                 <span className="w-2 h-2 bg-accent rounded-full"></span>
                 Free initial consultation
               </span>
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-2 hover-text-enhance">
                 <span className="w-2 h-2 bg-accent rounded-full"></span>
                 No commitment required
               </span>
-              <span className="flex items-center gap-2">
+              <span className="flex items-center gap-2 hover-text-enhance">
                 <span className="w-2 h-2 bg-accent rounded-full"></span>
                 24/7 support
               </span>

@@ -30,6 +30,22 @@
     --muted: #2a2a2a;
     --border: #3a3a3a;
   }
+
+  /* Global cursor improvements */
+  button, 
+  [role="button"], 
+  .cursor-pointer {
+    cursor: pointer !important;
+  }
+
+  /* Enhanced text visibility on hover */
+  .hover-text-enhance {
+    transition: all 0.3s ease;
+  }
+
+  .hover-text-enhance:hover {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  }
 }
 
 @layer components {
@@ -68,6 +84,7 @@
     position: relative;
     overflow: hidden;
     transition: all 0.3s ease;
+    cursor: pointer !important;
   }
 
   .premium-button::before {
@@ -85,15 +102,21 @@
     left: 100%;
   }
 
+  .premium-button:hover {
+    cursor: pointer !important;
+  }
+
   /* Enhanced Premium Card Hover Effects */
   .premium-card {
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     will-change: transform;
+    cursor: pointer !important;
   }
 
   .premium-card:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: 0 25px 50px -12px rgba(212, 175, 55, 0.25);
+    cursor: pointer !important;
   }
 
   /* Premium Text Shadows */
@@ -126,19 +149,22 @@
     background-clip: text;
   }
 
-  /* Enhanced Hover Effects */
+  /* Enhanced Hover Effects with Better Text Visibility */
   .hover-lift {
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer !important;
   }
 
   .hover-lift:hover {
     transform: translateY(-4px);
     box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+    cursor: pointer !important;
   }
 
   /* Premium Border Glow */
   .border-glow {
     position: relative;
+    cursor: pointer !important;
   }
 
   .border-glow::after {
@@ -154,5 +180,75 @@
 
   .border-glow:hover::after {
     opacity: 1;
+  }
+
+  /* Enhanced Interactive Elements */
+  .interactive-element {
+    cursor: pointer !important;
+    transition: all 0.3s ease;
+  }
+
+  .interactive-element:hover {
+    cursor: pointer !important;
+  }
+
+  /* Enhanced Card Hover with Better Text Visibility */
+  .card-hover-safe {
+    transition: all 0.4s ease;
+    cursor: pointer !important;
+  }
+
+  .card-hover-safe:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(212, 175, 55, 0.25);
+    cursor: pointer !important;
+  }
+
+  /* Premium Badge Hover */
+  .premium-badge {
+    cursor: pointer !important;
+    transition: all 0.3s ease;
+  }
+
+  .premium-badge:hover {
+    cursor: pointer !important;
+    transform: scale(1.05);
+  }
+
+  /* Enhanced Button States */
+  .btn-enhanced {
+    cursor: pointer !important;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-enhanced:hover {
+    cursor: pointer !important;
+    transform: translateY(-2px);
+  }
+
+  .btn-enhanced:active {
+    cursor: pointer !important;
+    transform: translateY(0);
+  }
+
+  /* Enhanced Text Visibility on Hover */
+  .text-hover-safe {
+    transition: all 0.3s ease;
+  }
+
+  .text-hover-safe:hover {
+    color: inherit !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  /* Project Card Text Enhancement */
+  .project-text-enhance {
+    transition: all 0.3s ease;
+  }
+
+  .project-text-enhance:hover {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
   }
 }

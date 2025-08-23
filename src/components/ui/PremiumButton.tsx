@@ -19,7 +19,7 @@ export const PremiumButton = memo(function PremiumButton({
   className = '',
   disabled = false
 }: PremiumButtonProps) {
-  const baseClasses = "group relative overflow-hidden transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed premium-button border-glow"
+  const baseClasses = "group relative overflow-hidden transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed btn-enhanced border-glow"
   
   const sizeClasses = {
     sm: "px-6 py-3 text-sm font-semibold rounded-lg",
@@ -38,8 +38,9 @@ export const PremiumButton = memo(function PremiumButton({
       onClick={onClick}
       disabled={disabled}
       className={`${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`}
+      style={{ cursor: disabled ? 'not-allowed' : 'pointer' }}
     >
-      <span className="relative z-10 flex items-center gap-3">
+      <span className="relative z-10 flex items-center gap-3 hover-text-enhance">
         {children}
       </span>
       
@@ -48,6 +49,9 @@ export const PremiumButton = memo(function PremiumButton({
       
       {/* Premium Border Glow */}
       <div className="absolute inset-0 rounded-inherit border border-accent/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      
+      {/* Enhanced Hover State */}
+      <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-inherit"></div>
     </button>
   )
 })
