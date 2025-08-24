@@ -1,33 +1,25 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { Hero } from '@/components/Hero'
 import { ServiceCard } from '@/components/ui/ServiceCard'
 import { ProjectCard } from '@/components/ui/ProjectCard'
 import { PremiumButton } from '@/components/ui/PremiumButton'
 import { services } from '@/data/services'
 import { projects } from '@/data/projects'
-import { useRouter } from 'next/navigation'
 
-export default function Home() {
+export default function HomePage() {
   const router = useRouter()
 
-  const handleProjectsClick = () => {
-    router.push('/projects')
-  }
-
-  const handleStartProjectClick = () => {
-    router.push('/start-project')
-  }
-
-  const handleScheduleConsultationClick = () => {
-    router.push('/schedule-consultation')
+  const handleStartProject = () => {
+    router.push('/contact')
   }
 
   return (
-    <main className="min-h-screen bg-background">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <Hero />
-
+      
       {/* Our Services Preview - Enhanced Premium Section */}
       <section className="py-24 sm:py-32 px-4 sm:px-6 bg-gradient-to-b from-card via-muted to-background relative overflow-hidden">
         {/* Enhanced Background Pattern */}
@@ -52,7 +44,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service) => (
               <ServiceCard
-                key={service.id}
+                key={service.title}
                 title={service.title}
                 description={service.description}
                 icon={service.icon}
@@ -89,7 +81,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             {projects.map((project) => (
               <ProjectCard
-                key={project.id}
+                key={project.name}
                 name={project.name}
                 location={project.location}
                 type={project.type}
@@ -104,7 +96,7 @@ export default function Home() {
           {/* Enhanced View All Projects Button */}
           <div className="text-center mt-16">
             <PremiumButton
-              onClick={handleProjectsClick}
+              onClick={() => router.push('/portfolio')}
               variant="outline"
               size="md"
               className="border-glow"
@@ -140,7 +132,7 @@ export default function Home() {
           {/* Enhanced CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-10">
             <PremiumButton
-              onClick={handleStartProjectClick}
+              onClick={handleStartProject}
               size="lg"
               className="border-glow"
             >
@@ -148,7 +140,7 @@ export default function Home() {
               <span className="group-hover:translate-x-1 transition-transform duration-300 text-2xl">→</span>
             </PremiumButton>
             <PremiumButton
-              onClick={handleScheduleConsultationClick}
+              onClick={() => router.push('/consultation')}
               variant="outline"
               size="lg"
               className="border-glow"
@@ -176,6 +168,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

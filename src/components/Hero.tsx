@@ -62,10 +62,7 @@ export function Hero() {
       
       {/* Hero Content with Enhanced Premium Styling */}
       <div className="relative z-10 text-center px-4 sm:px-6 max-w-6xl mx-auto">
-        {/* Premium Pre-title Badge with Glassmorphism - Fixed Hover State */}
-        <div className="group inline-flex items-center px-8 py-4 glass-premium rounded-full mb-10 shadow-2xl animate-fade-in-up border-glow premium-badge hover:scale-105 hover:bg-accent hover:border-accent transition-all duration-300">
-          <span className="text-accent text-sm font-semibold tracking-wider uppercase group-hover:text-white group-hover:text-shadow-white transition-all duration-300">Est. 2010 • Award-Winning Design</span>
-        </div>
+      
         
         {/* Main Heading with Enhanced Premium Typography and Readability */}
         <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-white mb-8 leading-tight tracking-tight text-shadow-premium animate-fade-in-up animation-delay-200 hover-text-enhance">
