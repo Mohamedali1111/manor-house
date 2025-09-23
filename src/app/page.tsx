@@ -126,7 +126,7 @@ export default function HomePage() {
             Ready to Transform Your <span className="gradient-text-gold">Space</span>?
           </h2>
           <p className="text-xl sm:text-2xl text-foreground/80 mb-10 max-w-3xl mx-auto leading-relaxed hover-text-enhance">
-            Let's collaborate to create an interior that reflects your personality, enhances your lifestyle, and exceeds your expectations.
+            Let&apos;s collaborate to create an interior that reflects your personality, enhances your lifestyle, and exceeds your expectations.
           </p>
           
           {/* Enhanced CTA Buttons */}

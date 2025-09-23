@@ -4,8 +4,7 @@ const nextConfig: NextConfig = {
   // Enable React strict mode for better development experience
   reactStrictMode: true,
   
-  // Enable SWC minification for faster builds
-  swcMinify: true,
+  // SWC minification is enabled by default in Next.js 13+
   
   // Image optimization settings
   images: {
@@ -30,14 +29,8 @@ const nextConfig: NextConfig = {
   
   // Experimental features for better performance
   experimental: {
-    // Enable optimizeCss for better CSS optimization
-    optimizeCss: true,
-    
     // Enable scrollRestoration for better UX
     scrollRestoration: true,
-    
-    // Enable legacyBrowsers for better compatibility
-    legacyBrowsers: false,
   },
   
   // Compiler options for better performance
