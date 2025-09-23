@@ -21,7 +21,7 @@ export const ServiceCard = memo(function ServiceCard({
   imageAlt
 }: ServiceCardProps) {
   return (
-    <div className="group relative bg-card/95 backdrop-blur-sm border border-border/50 rounded-3xl p-8 hover:bg-card hover:border-accent/40 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-accent/20 card-hover-safe overflow-hidden border-glow">
+    <div className="group relative bg-card/95 backdrop-blur-sm border border-border/50 rounded-2xl sm:rounded-3xl p-6 sm:p-8 hover:bg-card hover:border-accent/40 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-accent/20 card-hover-safe overflow-hidden border-glow">
       {/* Enhanced Background Image with Safe Opacity */}
       <div className="absolute inset-0 opacity-5 group-hover:opacity-8 transition-opacity duration-500">
         <Image
@@ -41,19 +41,19 @@ export const ServiceCard = memo(function ServiceCard({
       {/* Content with Enhanced Text Visibility */}
       <div className="relative z-10">
         {/* Enhanced Icon */}
-        <div className="w-20 h-20 bg-gradient-to-br from-accent/20 to-highlight/20 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-accent/20 group-hover:border-accent/40">
-          <span className="text-4xl">{icon}</span>
+        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-accent/20 to-highlight/20 rounded-2xl sm:rounded-3xl flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 border border-accent/20 group-hover:border-accent/40">
+          <span className="text-3xl sm:text-4xl">{icon}</span>
         </div>
         
         {/* Enhanced Title & Description - Better Hover Visibility */}
-        <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-accent transition-colors duration-300 hover:text-accent">{title}</h3>
-        <p className="text-foreground/70 text-base leading-relaxed mb-4 group-hover:text-foreground/80 transition-colors duration-300 hover:text-foreground/80">{description}</p>
+        <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-3 sm:mb-4 group-hover:text-accent transition-colors duration-300 hover:text-accent">{title}</h3>
+        <p className="text-foreground/70 text-sm sm:text-base leading-relaxed mb-3 sm:mb-4 group-hover:text-foreground/80 transition-colors duration-300 hover:text-foreground/80">{description}</p>
         
         {/* Enhanced Features List - Better Hover Visibility */}
-        <ul className="space-y-3">
+        <ul className="space-y-2 sm:space-y-3">
           {features.map((feature, idx) => (
-            <li key={idx} className="flex items-center gap-3 text-sm text-foreground/60 group-hover:text-foreground/70 transition-colors duration-300 hover:text-foreground/70">
-              <span className="w-2 h-2 bg-accent rounded-full flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></span>
+            <li key={idx} className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm text-foreground/60 group-hover:text-foreground/70 transition-colors duration-300 hover:text-foreground/70">
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-accent rounded-full flex-shrink-0 group-hover:scale-125 transition-transform duration-300"></span>
               {feature}
             </li>
           ))}
@@ -61,10 +61,10 @@ export const ServiceCard = memo(function ServiceCard({
       </div>
       
       {/* Enhanced Hover Effect Border */}
-      <div className="absolute inset-0 rounded-3xl border-2 border-accent/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      <div className="absolute inset-0 rounded-2xl sm:rounded-3xl border-2 border-accent/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       
       {/* Premium Corner Accent */}
-      <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-accent/20 to-transparent rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div className="absolute top-0 right-0 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-accent/20 to-transparent rounded-bl-2xl sm:rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
     </div>
   )
 })

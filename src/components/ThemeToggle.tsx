@@ -5,8 +5,10 @@ import { Moon, Sun } from 'lucide-react'
 
 export function ThemeToggle() {
   const [isDark, setIsDark] = useState(false) // Default to light mode
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     // Check localStorage for saved preference, default to light mode
     const savedTheme = localStorage.getItem('theme')
     
@@ -18,6 +20,11 @@ export function ThemeToggle() {
       setIsDark(false)
     }
   }, [])
+
+  // Prevent hydration mismatch
+  if (!mounted) {
+    return null
+  }
 
   const toggleTheme = () => {
     if (isDark) {
@@ -34,14 +41,14 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="fixed top-4 right-4 p-3 rounded-full bg-card hover:bg-accent/20 transition-all duration-300 text-foreground shadow-lg border border-border/50 hover:border-accent/30 z-50 hover:scale-110 transform"
+      className="fixed top-4 right-4 p-2.5 rounded-full bg-card hover:bg-accent/20 transition-all duration-300 text-foreground shadow-lg border border-border/50 hover:border-accent/30 z-50 hover:scale-110 transform"
       aria-label="Toggle theme"
       style={{ cursor: 'pointer' }}
     >
       {isDark ? (
-        <Sun className="w-5 h-5 text-accent" />
+        <Sun className="w-4 h-4 text-accent" />
       ) : (
-        <Moon className="w-5 h-5 text-accent" />
+        <Moon className="w-4 h-4 text-accent" />
       )}
     </button>
   )

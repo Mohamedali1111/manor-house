@@ -72,7 +72,7 @@ export default function RootLayout({
     <html lang="en" className={poppins.variable}>
       <body className={`${poppins.className} antialiased bg-background text-foreground`}>
         <Navbar />
-        <main className="min-h-screen pt-16">
+        <main className="min-h-screen pt-16 sm:pt-20">
           {children}
         </main>
         <Footer />
