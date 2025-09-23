@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import './globals.css'
-import { ThemeToggle } from '@/components/ThemeToggle'
 import { PerformanceMonitor } from '@/components/PerformanceMonitor'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
@@ -76,7 +75,6 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <ThemeToggle />
         <PerformanceMonitor />
       </body>
     </html>
