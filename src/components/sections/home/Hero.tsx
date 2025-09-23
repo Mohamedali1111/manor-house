@@ -72,18 +72,18 @@ export function Hero() {
           </div>
         </div>
         
-        {/* Main Heading with Enhanced Premium Typography */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white mb-8 sm:mb-10 leading-[0.9] tracking-tight animate-fade-in-up animation-delay-200">
-          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-accent/90 drop-shadow-2xl">
-            Designing
-          </span>
-          <span className="block text-accent drop-shadow-2xl font-light text-shadow-gold">
-            Timeless
-          </span>
-          <span className="block text-white drop-shadow-2xl">
-            Spaces
-          </span>
-        </h1>
+         {/* Main Heading with Enhanced Premium Typography */}
+         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white mb-8 sm:mb-10 leading-[1.1] tracking-tight animate-fade-in-up animation-delay-200">
+           <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-accent/90 drop-shadow-2xl mb-2">
+             Designing
+           </span>
+           <span className="block text-accent drop-shadow-2xl font-light text-shadow-gold mb-2">
+             Timeless
+           </span>
+           <span className="block text-white drop-shadow-2xl">
+             Spaces
+           </span>
+         </h1>
         
         {/* Enhanced Subheading */}
         <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white/90 mb-12 sm:mb-16 max-w-5xl mx-auto leading-relaxed font-light animate-fade-in-up animation-delay-400">

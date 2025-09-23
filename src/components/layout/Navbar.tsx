@@ -1,13 +1,17 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const router = useRouter()
+  const pathname = usePathname()
+  
+  // Check if we're on the home page
+  const isHomePage = pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,9 +38,11 @@ export function Navbar() {
     <>
       {/* Perfect Premium Navbar */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'bg-white/95 backdrop-blur-xl border-b border-accent/20 shadow-lg' 
-          : 'bg-black/20 backdrop-blur-md border-b border-white/10'
+        isHomePage 
+          ? (isScrolled 
+              ? 'bg-white/95 backdrop-blur-xl border-b border-accent/20 shadow-lg' 
+              : 'bg-black/20 backdrop-blur-md border-b border-white/10')
+          : 'bg-white/95 backdrop-blur-xl border-b border-accent/20 shadow-lg'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
@@ -47,7 +53,9 @@ export function Navbar() {
               </div>
               <div className="hidden sm:block">
                 <h1 className={`text-xl sm:text-2xl font-bold transition-colors duration-300 ${
-                  isScrolled ? 'text-foreground' : 'text-white'
+                  isHomePage 
+                    ? (isScrolled ? 'text-foreground' : 'text-white')
+                    : 'text-foreground'
                 } group-hover:text-accent`}>
                   Manor House
                 </h1>
@@ -64,7 +72,9 @@ export function Navbar() {
                   key={item.name}
                   onClick={() => handleNavClick(item.href)}
                   className={`relative font-medium text-sm xl:text-base transition-all duration-300 group ${
-                    isScrolled ? 'text-foreground hover:text-accent' : 'text-white hover:text-accent'
+                    isHomePage 
+                      ? (isScrolled ? 'text-foreground hover:text-accent' : 'text-white hover:text-accent')
+                      : 'text-foreground hover:text-accent'
                   }`}
                 >
                   {item.name}
@@ -88,20 +98,26 @@ export function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`lg:hidden p-2.5 rounded-lg transition-all duration-300 border ${
-                isScrolled 
-                  ? 'bg-accent/10 hover:bg-accent/20 border-accent/20' 
-                  : 'bg-white/20 hover:bg-white/30 border-white/30'
+                isHomePage 
+                  ? (isScrolled 
+                      ? 'bg-accent/10 hover:bg-accent/20 border-accent/20' 
+                      : 'bg-white/20 hover:bg-white/30 border-white/30')
+                  : 'bg-accent/10 hover:bg-accent/20 border-accent/20'
               }`}
               style={{ cursor: 'pointer' }}
               aria-label="Toggle mobile menu"
             >
               {isOpen ? (
                 <X className={`w-5 h-5 transition-colors duration-300 ${
-                  isScrolled ? 'text-accent' : 'text-white'
+                  isHomePage 
+                    ? (isScrolled ? 'text-accent' : 'text-white')
+                    : 'text-accent'
                 }`} />
               ) : (
                 <Menu className={`w-5 h-5 transition-colors duration-300 ${
-                  isScrolled ? 'text-accent' : 'text-white'
+                  isHomePage 
+                    ? (isScrolled ? 'text-accent' : 'text-white')
+                    : 'text-accent'
                 }`} />
               )}
             </button>
