@@ -2,8 +2,8 @@
 export { Navbar } from './layout/Navbar'
 export { Footer } from './layout/Footer'
 
-// Section Components
-export { Hero } from './sections/Hero'
+// Home Section Components
+export * from './sections/home'
 
 // Common Components
 export { PerformanceMonitor } from './common/PerformanceMonitor'
