@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { Hero } from '@/components/Hero'
+import { Hero } from '@/components/sections/Hero'
 import { ServiceCard } from '@/components/ui/ServiceCard'
 import { ProjectCard } from '@/components/ui/ProjectCard'
 import { PremiumButton } from '@/components/ui/PremiumButton'

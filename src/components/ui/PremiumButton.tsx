@@ -4,7 +4,8 @@ import { memo, ReactNode } from 'react'
 
 interface PremiumButtonProps {
   children: ReactNode
-  onClick: () => void
+  onClick?: () => void
+  type?: 'button' | 'submit' | 'reset'
   variant?: 'primary' | 'secondary' | 'outline'
   size?: 'sm' | 'md' | 'lg'
   className?: string
@@ -14,6 +15,7 @@ interface PremiumButtonProps {
 export const PremiumButton = memo(function PremiumButton({
   children,
   onClick,
+  type = 'button',
   variant = 'primary',
   size = 'md',
   className = '',
@@ -35,6 +37,7 @@ export const PremiumButton = memo(function PremiumButton({
   
   return (
     <button
+      type={type}
       onClick={onClick}
       disabled={disabled}
       className={`${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${className}`}
