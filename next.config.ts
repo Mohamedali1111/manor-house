@@ -8,6 +8,13 @@ const nextConfig: NextConfig = {
   
   // Image optimization settings
   images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
+      },
+    ],
     // Enable modern image formats
     formats: ['image/webp', 'image/avif'],
     

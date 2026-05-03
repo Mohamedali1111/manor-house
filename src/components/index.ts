@@ -1,6 +1,7 @@
 // Layout Components
 export { Navbar } from './layout/Navbar'
 export { Footer } from './layout/Footer'
+export { PageHero } from './layout/PageHero'
 
 // Home Section Components
 export * from './sections/home'
@@ -12,3 +13,4 @@ export { PerformanceMonitor } from './common/PerformanceMonitor'
 export { PremiumButton } from './ui/PremiumButton'
 export { ServiceCard } from './ui/ServiceCard'
 export { ProjectCard } from './ui/ProjectCard'
+export { FormStatus } from './ui/FormStatus'

@@ -5,9 +5,9 @@ import { services } from '@/data/services'
 
 export function ServicesPreviewSection() {
   return (
-    <section className="py-20 sm:py-24 lg:py-32 px-4 sm:px-6 bg-gradient-to-b from-card via-muted to-background relative overflow-hidden">
+    <section className="relative overflow-hidden bg-gradient-to-b from-card via-muted to-background px-4 py-12 sm:px-6 sm:py-16 lg:py-20">
       {/* Enhanced Background Elements */}
-      <div className="absolute inset-0 bg-[url('/subtle-light-pattern.png')] opacity-8"></div>
+      <div className="absolute inset-0 opacity-[0.06] bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' stroke=\'%23000\' stroke-opacity=\'0.12\'%3E%3Cpath d=\'M0 60 L60 0 M-15 15 L15 -15 M45 75 L75 45\'/%3E%3C/g%3E%3C/svg%3E')]" />
       <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-highlight/5"></div>
       <div className="absolute inset-0 bg-gradient-to-br from-accent/3 via-transparent to-highlight/3"></div>
       
@@ -17,20 +17,20 @@ export function ServicesPreviewSection() {
       
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Enhanced Header */}
-        <div className="text-center mb-16 sm:mb-20">
-          <div className="inline-flex items-center px-6 py-2 bg-accent/10 border border-accent/20 rounded-full mb-6 premium-badge">
-            <span className="text-accent text-sm font-semibold hover-text-enhance">Our Expertise</span>
+        <div className="mb-10 text-center sm:mb-12">
+          <div className="mb-4 inline-flex items-center rounded-full border border-accent/20 bg-accent/10 px-3 py-1.5 premium-badge">
+            <span className="text-xs font-semibold text-accent">Our expertise</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-6 sm:mb-8 leading-tight tracking-tight hover-text-enhance">
-            What We <span className="gradient-text-gold">Do Best</span>
+          <h2 className="mb-3 text-2xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl">
+            What we <span className="gradient-text-gold">do best</span>
           </h2>
-          <p className="text-lg sm:text-xl lg:text-2xl text-foreground/70 max-w-3xl mx-auto leading-relaxed font-light hover-text-enhance">
-            Transform your space with our comprehensive interior design solutions tailored to your unique vision
+          <p className="mx-auto max-w-2xl text-sm text-foreground/70 sm:text-base">
+            Comprehensive interior services tailored to your brief — Cairo, Alexandria, and New Cairo.
           </p>
         </div>
         
         {/* Enhanced Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-16">
+        <div className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {services.map((service, index) => (
             <div 
               key={service.title}
@@ -49,34 +49,22 @@ export function ServicesPreviewSection() {
           ))}
         </div>
 
-        {/* Enhanced Stats Section */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          <div className="text-center p-6 lg:p-8 glass-premium rounded-2xl border border-accent/20 hover:border-accent/40 transition-all duration-300 hover-lift group">
-            <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-accent mb-2 group-hover:scale-110 transition-transform duration-300">500+</div>
-            <div className="text-sm sm:text-base text-foreground/70 font-medium">Projects</div>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
+          <div className="rounded-xl border border-accent/20 bg-card/90 p-5 text-center shadow-sm">
+            <div className="mb-1 text-2xl font-bold text-accent lg:text-3xl">500+</div>
+            <div className="text-xs font-medium text-foreground/70 sm:text-sm">Projects completed</div>
           </div>
-          <div className="text-center p-6 lg:p-8 glass-premium rounded-2xl border border-accent/20 hover:border-accent/40 transition-all duration-300 hover-lift group">
-            <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-accent mb-2 group-hover:scale-110 transition-transform duration-300">15+</div>
-            <div className="text-sm sm:text-base text-foreground/70 font-medium">Years</div>
+          <div className="rounded-xl border border-accent/20 bg-card/90 p-5 text-center shadow-sm">
+            <div className="mb-1 text-2xl font-bold text-accent lg:text-3xl">15+</div>
+            <div className="text-xs font-medium text-foreground/70 sm:text-sm">Years of experience</div>
           </div>
-          <div className="text-center p-6 lg:p-8 glass-premium rounded-2xl border border-accent/20 hover:border-accent/40 transition-all duration-300 hover-lift group">
-            <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-accent mb-2 group-hover:scale-110 transition-transform duration-300">98%</div>
-            <div className="text-sm sm:text-base text-foreground/70 font-medium">Satisfaction</div>
-          </div>
-          <div className="text-center p-6 lg:p-8 glass-premium rounded-2xl border border-accent/20 hover:border-accent/40 transition-all duration-300 hover-lift group">
-            <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-accent mb-2 group-hover:scale-110 transition-transform duration-300">24/7</div>
-            <div className="text-sm sm:text-base text-foreground/70 font-medium">Support</div>
+          <div className="rounded-xl border border-accent/20 bg-card/90 p-5 text-center shadow-sm">
+            <div className="mb-1 text-2xl font-bold text-accent lg:text-3xl">98%</div>
+            <div className="text-xs font-medium text-foreground/70 sm:text-sm">Client satisfaction</div>
           </div>
         </div>
-        
-        {/* Additional Premium Info */}
-        <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-2 text-foreground/60 text-sm">
-            <div className="w-1 h-1 bg-accent rounded-full"></div>
-            <span>Comprehensive design solutions from concept to completion</span>
-            <div className="w-1 h-1 bg-accent rounded-full"></div>
-          </div>
-        </div>
+
+        <p className="mt-8 text-center text-xs text-foreground/55">Concept through completion — one coordinated studio.</p>
       </div>
     </section>
   )

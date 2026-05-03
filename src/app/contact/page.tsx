@@ -1,8 +1,12 @@
 'use client'
 
 import { useState } from 'react'
+import { PageHero } from '@/components/layout/PageHero'
 import { PremiumButton } from '@/components/ui/PremiumButton'
-import { Phone, Mail, MapPin, Clock } from 'lucide-react'
+import { FormStatus } from '@/components/ui/FormStatus'
+import { Phone, Mail, MapPin, Clock, MessageCircle } from 'lucide-react'
+import { site } from '@/data/site'
+import { simulateFormSuccess } from '@/lib/form-submit'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -11,215 +15,196 @@ export default function ContactPage() {
     phone: '',
     projectType: '',
     budget: '',
-    message: ''
+    message: '',
   })
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success'>('idle')
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
+    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', formData)
+    setSubmitStatus('loading')
+    try {
+      await simulateFormSuccess(700)
+      setSubmitStatus('success')
+      setFormData({ name: '', email: '', phone: '', projectType: '', budget: '', message: '' })
+    } catch {
+      setSubmitStatus('idle')
+    }
   }
+
+  const fieldClass =
+    'w-full rounded-xl border border-border bg-card px-3 py-2.5 text-sm text-foreground outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/25'
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-20 sm:py-24 lg:py-32 px-4 sm:px-6 bg-gradient-to-br from-card via-muted to-background">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 sm:px-6 py-1.5 sm:py-2 bg-accent/10 border border-accent/20 rounded-full mb-6">
-              <span className="text-accent text-xs sm:text-sm font-semibold">Get In Touch</span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Let&apos;s <span className="gradient-text-gold">Connect</span>
-            </h1>
-            <p className="text-lg sm:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
-              Ready to transform your space? We&apos;d love to hear about your project and discuss how we can bring your vision to life.
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="min-h-screen bg-background">
+      <PageHero
+        eyebrow="Contact"
+        title={
+          <>
+            Let&apos;s Talk <span className="gradient-text-gold">Seriously</span>
+          </>
+        }
+        description="Share your brief — location, scope, and timeline. We respond with structured next steps and an honest feasibility conversation."
+      />
 
-      {/* Contact Form & Info */}
-      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-background">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-            {/* Contact Form */}
-            <div>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Send us a Message</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
-                      placeholder="Your full name"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                      Email Address *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
-                      placeholder="your@email.com"
-                    />
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
-                      placeholder="+1 (555) 123-4567"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="projectType" className="block text-sm font-medium text-foreground mb-2">
-                      Project Type
-                    </label>
-                    <select
-                      id="projectType"
-                      name="projectType"
-                      value={formData.projectType}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
-                    >
-                      <option value="">Select project type</option>
-                      <option value="residential">Residential</option>
-                      <option value="commercial">Commercial</option>
-                      <option value="hospitality">Hospitality</option>
-                      <option value="consultation">Consultation Only</option>
-                    </select>
-                  </div>
-                </div>
-                
+      <section className="px-4 py-10 sm:px-6 sm:py-12">
+        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
+          <div className="rounded-2xl border border-border/60 bg-card/95 p-6 shadow-md backdrop-blur sm:p-8">
+            <h2 className="mb-1 text-lg font-bold text-foreground sm:text-xl">Send a message</h2>
+            <p className="mb-6 text-sm text-foreground/65">Fastest reply: WhatsApp. For detailed briefs, use the form.</p>
+
+            {submitStatus === 'success' ? (
+              <FormStatus
+                type="success"
+                message="Received. Our studio replies within one business day — often sooner on WhatsApp."
+              />
+            ) : (
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label htmlFor="budget" className="block text-sm font-medium text-foreground mb-2">
-                    Budget Range
+                  <label htmlFor="name" className="mb-2 block text-sm font-medium text-foreground">
+                    Full name *
                   </label>
-                  <select
-                    id="budget"
-                    name="budget"
-                    value={formData.budget}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
-                  >
-                    <option value="">Select budget range</option>
-                    <option value="under-25k">Under $25,000</option>
-                    <option value="25k-50k">$25,000 - $50,000</option>
-                    <option value="50k-100k">$50,000 - $100,000</option>
-                    <option value="100k-250k">$100,000 - $250,000</option>
-                    <option value="over-250k">Over $250,000</option>
+                  <input type="text" id="name" name="name" value={formData.name} onChange={handleInputChange} required className={fieldClass} placeholder="Your name" />
+                </div>
+                <div>
+                  <label htmlFor="email" className="mb-2 block text-sm font-medium text-foreground">
+                    Email *
+                  </label>
+                  <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} required className={fieldClass} placeholder="you@email.com" />
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="phone" className="mb-2 block text-sm font-medium text-foreground">
+                  Phone / WhatsApp
+                </label>
+                <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleInputChange} className={fieldClass} placeholder="+20 …" />
+              </div>
+
+                <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="projectType" className="mb-2 block text-sm font-medium text-foreground">
+                    Project type
+                  </label>
+                  <select id="projectType" name="projectType" value={formData.projectType} onChange={handleInputChange} className={fieldClass}>
+                    <option value="">Select</option>
+                    <option value="villa">Villa</option>
+                    <option value="penthouse">Penthouse / apartment</option>
+                    <option value="compound">Compound residence</option>
+                    <option value="commercial">Commercial</option>
+                    <option value="consultation">Consultation only</option>
                   </select>
                 </div>
-                
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                    Project Details *
+                  <label htmlFor="budget" className="mb-2 block text-sm font-medium text-foreground">
+                    Investment range (EGP)
                   </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required
-                    rows={5}
-                    className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors resize-none"
-                    placeholder="Tell us about your project, timeline, and any specific requirements..."
-                  />
+                  <select id="budget" name="budget" value={formData.budget} onChange={handleInputChange} className={fieldClass}>
+                    <option value="">Select range</option>
+                    <option value="under-1m">Under 1,000,000</option>
+                    <option value="1m-3m">1,000,000 – 3,000,000</option>
+                    <option value="3m-8m">3,000,000 – 8,000,000</option>
+                    <option value="8m-15m">8,000,000 – 15,000,000</option>
+                    <option value="over-15m">15,000,000+</option>
+                  </select>
                 </div>
-                
-                <PremiumButton
-                  type="submit"
-                  size="lg"
-                  className="w-full border-glow"
-                >
-                  Send Message
+              </div>
+
+              <div>
+                <label htmlFor="message" className="mb-2 block text-sm font-medium text-foreground">
+                  Project details *
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  rows={5}
+                  className={`${fieldClass} resize-none`}
+                  placeholder="Location, approx. size, desired start date, and anything we should know."
+                />
+              </div>
+
+                <PremiumButton type="submit" size="md" className="w-full border-glow" disabled={submitStatus === 'loading'}>
+                  {submitStatus === 'loading' ? 'Sending…' : 'Submit inquiry'}
                 </PremiumButton>
               </form>
+            )}
             </div>
 
-            {/* Contact Information */}
-            <div>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Get in Touch</h2>
-              <p className="text-lg text-foreground/70 mb-8 leading-relaxed">
-                We&apos;re here to help bring your design vision to life. Reach out to us through any of the channels below.
-              </p>
-              
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-6 h-6 text-accent" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-1">Phone</h3>
-                    <p className="text-foreground/70">+1 (555) 123-4567</p>
-                    <p className="text-sm text-foreground/60">Mon-Fri: 9AM-6PM</p>
-                  </div>
+          <div>
+            <div className="mb-6 rounded-2xl border border-accent/25 bg-gradient-to-br from-accent/10 via-card to-background p-5 sm:p-6">
+              <h3 className="mb-1 text-base font-semibold text-foreground">Prefer WhatsApp?</h3>
+              <p className="mb-4 text-sm text-foreground/70">Share photos and pins — we route you quickly.</p>
+              <a
+                href={site.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-5 py-3 text-center text-sm font-semibold text-white shadow-md transition hover:bg-highlight"
+              >
+                <MessageCircle className="h-5 w-5" aria-hidden />
+                Chat on WhatsApp
+              </a>
+            </div>
+
+            <div className="space-y-5 rounded-2xl border border-border/60 bg-card p-5 sm:p-6">
+              <div className="flex gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-accent/10 text-accent">
+                  <Phone className="h-6 w-6" aria-hidden />
                 </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-6 h-6 text-accent" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-1">Email</h3>
-                    <p className="text-foreground/70">hello@manorhouse.com</p>
-                    <p className="text-sm text-foreground/60">We respond within 24 hours</p>
-                  </div>
+                <div>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-foreground/55">Phone</div>
+                  <a href={`tel:${site.phoneTel}`} className="text-lg font-semibold text-foreground hover:text-accent">
+                    {site.phoneDisplay}
+                  </a>
                 </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-accent" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-1">Office</h3>
-                    <p className="text-foreground/70">123 Design Ave<br />New York, NY 10001</p>
-                    <p className="text-sm text-foreground/60">By appointment only</p>
-                  </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-accent/10 text-accent">
+                  <Mail className="h-6 w-6" aria-hidden />
                 </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-6 h-6 text-accent" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-1">Business Hours</h3>
-                    <p className="text-foreground/70">Monday - Friday: 9:00 AM - 6:00 PM</p>
-                    <p className="text-foreground/70">Saturday: 10:00 AM - 4:00 PM</p>
-                    <p className="text-sm text-foreground/60">Sunday: Closed</p>
-                  </div>
+                <div>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-foreground/55">Email</div>
+                  <a href={`mailto:${site.email}`} className="block text-base font-semibold text-foreground hover:text-accent">
+                    {site.email}
+                  </a>
+                  <a href={`mailto:${site.emailProjects}`} className="mt-1 block text-sm font-medium text-foreground/80 hover:text-accent">
+                    {site.emailProjects}
+                  </a>
+                  <p className="mt-1 text-sm text-foreground/60">We reply within one business day.</p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent sm:h-12 sm:w-12 sm:rounded-2xl">
+                  <MapPin className="h-5 w-5 sm:h-6 sm:w-6" aria-hidden />
+                </div>
+                <div>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-foreground/55">Studio</div>
+                  {site.addressLines.map((line) => (
+                    <div key={line} className="text-lg font-semibold text-foreground">
+                      {line}
+                    </div>
+                  ))}
+                  <p className="mt-1 text-sm text-foreground/60">Visits by appointment.</p>
+                </div>
+              </div>
+
+              <div className="flex gap-4 border-t border-border/50 pt-6">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-accent/10 text-accent">
+                  <Clock className="h-6 w-6" aria-hidden />
+                </div>
+                <div>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-foreground/55">Hours</div>
+                  <p className="font-semibold text-foreground">{site.hours.weekdays}</p>
+                  <p className="text-sm text-foreground/65">{site.hours.saturday}</p>
                 </div>
               </div>
             </div>
@@ -227,48 +212,29 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-gradient-to-br from-muted to-card">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-lg text-foreground/70">
-              Common questions about our design process and services.
-            </p>
-          </div>
-          
-          <div className="space-y-6">
-            <div className="bg-card p-6 rounded-2xl border border-border/50">
-              <h3 className="text-lg font-semibold text-foreground mb-3">
-                How long does a typical project take?
-              </h3>
-              <p className="text-foreground/70 leading-relaxed">
-                Project timelines vary depending on scope and complexity. A typical residential project takes 8-12 weeks, 
-                while commercial projects may take 12-24 weeks. We provide detailed timelines during the consultation phase.
-              </p>
-            </div>
-            
-            <div className="bg-card p-6 rounded-2xl border border-border/50">
-              <h3 className="text-lg font-semibold text-foreground mb-3">
-                Do you work within specific budgets?
-              </h3>
-              <p className="text-foreground/70 leading-relaxed">
-                Yes, we work with budgets of all sizes. We&apos;re experienced in maximizing value and can provide 
-                creative solutions that deliver exceptional results within your budget constraints.
-              </p>
-            </div>
-            
-            <div className="bg-card p-6 rounded-2xl border border-border/50">
-              <h3 className="text-lg font-semibold text-foreground mb-3">
-                What areas do you serve?
-              </h3>
-              <p className="text-foreground/70 leading-relaxed">
-                We primarily serve the New York metropolitan area, but we also take on select projects in 
-                surrounding regions. Contact us to discuss your location and project requirements.
-              </p>
-            </div>
+      <section className="border-t border-accent/15 bg-muted/40 px-4 py-10 sm:px-6 sm:py-12">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="mb-6 text-center text-xl font-bold text-foreground sm:text-2xl">Common questions</h2>
+          <div className="space-y-5">
+            {[
+              {
+                q: 'Do you work outside Cairo?',
+                a: 'Yes — we routinely execute projects in Alexandria and New Cairo, with structured site visits and coordinated procurement.',
+              },
+              {
+                q: 'How soon can we start?',
+                a: 'Calendar depends on scope and supplier lead times. After the initial visit, we provide a phased timeline tied to decisions and deposits.',
+              },
+              {
+                q: 'Do you handle execution supervision?',
+                a: 'Yes — execution supervision is core to our studio model. We coordinate trades around approved schedules and mock-ups.',
+              },
+            ].map((faq) => (
+              <div key={faq.q} className="rounded-2xl border border-border/60 bg-card p-6">
+                <h3 className="mb-2 font-semibold text-foreground">{faq.q}</h3>
+                <p className="leading-relaxed text-foreground/70">{faq.a}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

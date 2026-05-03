@@ -1,7 +1,9 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { Phone, Mail, MapPin, Clock, Sparkles, ArrowRight, Heart, Star, Home, Settings, FolderOpen, Users, MessageCircle, FileText } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock, Sparkles, ArrowRight, Heart, Star, Home, Settings, FolderOpen, Users, MessageCircle, Gem, FileText } from 'lucide-react'
+import { site } from '@/data/site'
+import { FooterSubscribe } from '@/components/layout/FooterSubscribe'
 
 export function Footer() {
   const router = useRouter()
@@ -41,7 +43,7 @@ export function Footer() {
               </div>
             </div>
             <p className="text-gray-600 leading-relaxed mb-4 text-sm">
-              Creating timeless spaces that inspire and delight. Our award-winning team brings over 15 years of experience in luxury interior design.
+              {site.description}
             </p>
             <div className="flex items-center space-x-2 mb-4">
               <div className="flex items-center space-x-1">
@@ -77,9 +79,11 @@ export function Footer() {
                 { name: 'Home', href: '/', icon: Home },
                 { name: 'Services', href: '/services', icon: Settings },
                 { name: 'Portfolio', href: '/portfolio', icon: FolderOpen },
-                { name: 'About Us', href: '/about', icon: Users },
+                { name: 'Materials', href: '/materials', icon: Gem },
+                { name: 'About', href: '/about', icon: Users },
+                { name: 'Testimonials', href: '/testimonials', icon: Star },
                 { name: 'Contact', href: '/contact', icon: MessageCircle },
-                { name: 'Blog', href: '/blog', icon: FileText }
+                { name: 'Journal', href: '/blog', icon: FileText },
               ].map((item) => {
                 const IconComponent = item.icon
                 return (
@@ -144,7 +148,26 @@ export function Footer() {
                 </div>
                 <div className="group-hover:translate-x-1 transition-transform duration-300">
                   <p className="text-gray-500 text-xs">Phone</p>
-                  <p className="text-gray-900 font-medium text-sm group-hover:text-[#D4af37] transition-colors duration-300">+1 (555) 123-4567</p>
+                  <a href={`tel:${site.phoneTel}`} className="text-gray-900 font-medium text-sm group-hover:text-[#D4af37] transition-colors duration-300">
+                    {site.phoneDisplay}
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-3 group">
+                <div className="w-4 h-4 bg-gradient-to-br from-[#D4af37]/10 to-[#e6c866]/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1 group-hover:scale-110 transition-transform duration-300">
+                  <MessageCircle className="w-2 h-2 text-[#D4af37]" />
+                </div>
+                <div className="group-hover:translate-x-1 transition-transform duration-300">
+                  <p className="text-gray-500 text-xs">WhatsApp</p>
+                  <a
+                    href={site.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-900 font-medium text-sm group-hover:text-[#D4af37] transition-colors duration-300"
+                  >
+                    {site.whatsappDisplay}
+                  </a>
                 </div>
               </div>
               
@@ -154,7 +177,9 @@ export function Footer() {
                 </div>
                 <div className="group-hover:translate-x-1 transition-transform duration-300">
                   <p className="text-gray-500 text-xs">Email</p>
-                  <p className="text-gray-900 font-medium text-sm group-hover:text-[#D4af37] transition-colors duration-300">hello@manorhouse.com</p>
+                  <a href={`mailto:${site.email}`} className="text-gray-900 font-medium text-sm group-hover:text-[#D4af37] transition-colors duration-300">
+                    {site.email}
+                  </a>
                 </div>
               </div>
               
@@ -164,7 +189,13 @@ export function Footer() {
                 </div>
                 <div className="group-hover:translate-x-1 transition-transform duration-300">
                   <p className="text-gray-500 text-xs">Address</p>
-                  <p className="text-gray-900 font-medium text-sm group-hover:text-[#D4af37] transition-colors duration-300">123 Design Ave, New York, NY 10001</p>
+                  <p className="text-gray-900 font-medium text-sm group-hover:text-[#D4af37] transition-colors duration-300">
+                    {site.addressLines.map((line) => (
+                      <span key={line} className="block">
+                        {line}
+                      </span>
+                    ))}
+                  </p>
                 </div>
               </div>
               
@@ -174,39 +205,18 @@ export function Footer() {
                 </div>
                 <div className="group-hover:translate-x-1 transition-transform duration-300">
                   <p className="text-gray-500 text-xs">Hours</p>
-                  <p className="text-gray-900 font-medium text-sm group-hover:text-[#D4af37] transition-colors duration-300">Mon-Fri: 9AM-6PM</p>
+                  <p className="text-gray-900 font-medium text-sm group-hover:text-[#D4af37] transition-colors duration-300">
+                    {site.hours.weekdays}
+                    <span className="mt-1 block text-gray-500 text-xs font-normal">{site.hours.saturday}</span>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Enhanced Newsletter Section */}
-        <div className="mt-10 pt-8 border-t border-[#D4af37]/20">
-          <div className="max-w-2xl mx-auto text-center">
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-[#D4af37] to-[#e6c866] rounded-full flex items-center justify-center">
-                <Mail className="w-4 h-4 text-white" />
-              </div>
-              <h4 className="text-lg font-bold text-gray-900">Stay Updated</h4>
-            </div>
-            <p className="text-gray-600 mb-4 text-sm">
-              Subscribe to our newsletter for design tips, project updates, and exclusive offers.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#D4af37]/50 focus:border-[#D4af37] bg-white text-gray-900 placeholder:text-gray-500 text-sm transition-all duration-300 hover:border-[#D4af37]/30"
-              />
-              <button
-                className="px-6 py-2.5 bg-gradient-to-r from-[#D4af37] to-[#e6c866] hover:from-[#e6c866] hover:to-[#D4af37] text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-lg hover:shadow-xl hover:shadow-[#D4af37]/25"
-                style={{ cursor: 'pointer' }}
-              >
-                Subscribe
-              </button>
-            </div>
-          </div>
+        <div className="mt-10 border-t border-[#D4af37]/20 pt-8">
+          <FooterSubscribe />
         </div>
       </div>
 

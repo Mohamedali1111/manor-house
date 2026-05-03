@@ -13,8 +13,10 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: 'Manor House - Premium Interior Design',
-  description: 'Creating timeless spaces that inspire and delight. Award-winning interior design services with over 15 years of experience.',
-  keywords: 'interior design, luxury interiors, space planning, consultation, New York',
+  description:
+    'Luxury interior design in Egypt — Cairo, Alexandria, and New Cairo. Timeless spaces, supervised execution, and specification-grade materials.',
+  keywords:
+    'interior design Egypt, luxury interiors Cairo, Sheikh Zayed interior design, New Cairo, Alexandria, space planning, consultation, Manor House',
   authors: [{ name: 'Manor House Interior Design' }],
   creator: 'Manor House Interior Design',
   publisher: 'Manor House Interior Design',
@@ -57,9 +59,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'your-google-verification-code',
-  },
 }
 
 export default function RootLayout({
@@ -71,7 +70,7 @@ export default function RootLayout({
     <html lang="en" className={poppins.variable}>
       <body className={`${poppins.className} antialiased bg-background text-foreground`}>
         <Navbar />
-        <main className="min-h-screen pt-16 sm:pt-20">
+        <main className="min-h-screen pt-14 sm:pt-16">
           {children}
         </main>
         <Footer />

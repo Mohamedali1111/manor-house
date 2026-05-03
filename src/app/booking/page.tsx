@@ -1,8 +1,11 @@
 'use client'
 
 import { useState } from 'react'
+import { PageHero } from '@/components/layout/PageHero'
 import { PremiumButton } from '@/components/ui/PremiumButton'
+import { FormStatus } from '@/components/ui/FormStatus'
 import { Calendar, Clock, User, MapPin } from 'lucide-react'
+import { simulateFormSuccess } from '@/lib/form-submit'
 
 export default function BookingPage() {
   const [formData, setFormData] = useState({
@@ -20,6 +23,7 @@ export default function BookingPage() {
     zipCode: '',
     message: ''
   })
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success'>('idle')
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
@@ -29,43 +33,46 @@ export default function BookingPage() {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log('Booking form submitted:', formData)
+    setSubmitStatus('loading')
+    try {
+      await simulateFormSuccess(750)
+      setSubmitStatus('success')
+    } catch {
+      setSubmitStatus('idle')
+    }
   }
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-20 sm:py-24 lg:py-32 px-4 sm:px-6 bg-gradient-to-br from-card via-muted to-background">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 sm:px-6 py-1.5 sm:py-2 bg-accent/10 border border-accent/20 rounded-full mb-6">
-              <span className="text-accent text-xs sm:text-sm font-semibold">Book Your Project</span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Start Your <span className="gradient-text-gold">Design</span> Journey
-            </h1>
-            <p className="text-lg sm:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
-              Ready to transform your space? Fill out our project booking form and let&apos;s bring your vision to life.
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="min-h-screen bg-background">
+      <PageHero
+        eyebrow="Booking"
+        title={
+          <>
+            Start Your <span className="gradient-text-gold">Project</span>
+          </>
+        }
+        description="Tell us about your property and ambitions — our studio reviews every submission and responds with clear next steps."
+      />
 
-      {/* Booking Form */}
-      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-background">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-card p-8 rounded-2xl border border-border/50 shadow-lg">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-foreground mb-4">Project Booking Form</h2>
-              <p className="text-foreground/70">
-                Please provide us with your project details so we can better understand your needs.
+      <section className="bg-background px-4 py-10 sm:px-6 sm:py-12">
+        <div className="mx-auto max-w-3xl">
+          {submitStatus === 'success' ? (
+            <FormStatus
+              type="success"
+              message="Thank you. Your project brief is logged — our studio will reply within one business day with next steps."
+            />
+          ) : (
+          <div className="rounded-2xl border border-border/50 bg-card p-6 shadow-md sm:p-8">
+            <div className="mb-6 text-center">
+              <h2 className="mb-2 text-xl font-bold text-foreground sm:text-2xl">Project booking</h2>
+              <p className="text-sm text-foreground/70">
+                Share your details — we respond with clarity on feasibility and timing.
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-8">
+            <form onSubmit={handleSubmit} className="space-y-6">
               {/* Personal Information */}
               <div>
                 <h3 className="text-xl font-semibold text-foreground mb-6 flex items-center">
@@ -133,7 +140,7 @@ export default function BookingPage() {
                       onChange={handleInputChange}
                       required
                       className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
-                      placeholder="+1 (555) 123-4567"
+                      placeholder="+20 …"
                     />
                   </div>
                 </div>
@@ -179,12 +186,12 @@ export default function BookingPage() {
                       className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
                     >
                       <option value="">Select budget range</option>
-                      <option value="under-25k">Under $25,000</option>
-                      <option value="25k-50k">$25,000 - $50,000</option>
-                      <option value="50k-100k">$50,000 - $100,000</option>
-                      <option value="100k-250k">$100,000 - $250,000</option>
-                      <option value="250k-500k">$250,000 - $500,000</option>
-                      <option value="over-500k">Over $500,000</option>
+                      <option value="under-1m">Under EGP 1,000,000</option>
+                      <option value="1m-3m">EGP 1,000,000 – 3,000,000</option>
+                      <option value="3m-8m">EGP 3,000,000 – 8,000,000</option>
+                      <option value="8m-15m">EGP 8,000,000 – 15,000,000</option>
+                      <option value="15m-30m">EGP 15,000,000 – 30,000,000</option>
+                      <option value="over-30m">EGP 30,000,000+</option>
                     </select>
                   </div>
                 </div>
@@ -270,12 +277,12 @@ export default function BookingPage() {
                         onChange={handleInputChange}
                         required
                         className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
-                        placeholder="New York"
+                        placeholder="Cairo"
                       />
                     </div>
                     <div>
                       <label htmlFor="state" className="block text-sm font-medium text-foreground mb-2">
-                        State *
+                        Governorate *
                       </label>
                       <input
                         type="text"
@@ -285,7 +292,7 @@ export default function BookingPage() {
                         onChange={handleInputChange}
                         required
                         className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
-                        placeholder="NY"
+                        placeholder="Governorate"
                       />
                     </div>
                     <div>
@@ -300,7 +307,7 @@ export default function BookingPage() {
                         onChange={handleInputChange}
                         required
                         className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
-                        placeholder="10001"
+                        placeholder="Postal code"
                       />
                     </div>
                   </div>
@@ -330,70 +337,35 @@ export default function BookingPage() {
                 </div>
               </div>
 
-              <PremiumButton
-                type="submit"
-                size="lg"
-                className="w-full border-glow"
-              >
-                Submit Project Request
+              <PremiumButton type="submit" size="md" className="w-full border-glow" disabled={submitStatus === 'loading'}>
+                {submitStatus === 'loading' ? 'Sending…' : 'Submit project request'}
               </PremiumButton>
             </form>
           </div>
+          )}
         </div>
       </section>
 
-      {/* What Happens Next */}
-      <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-gradient-to-br from-muted to-card">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
-              What Happens Next?
-            </h2>
-            <p className="text-lg text-foreground/70 max-w-3xl mx-auto">
-              Here&apos;s what you can expect after submitting your project request.
-            </p>
+      <section className="bg-gradient-to-br from-muted to-card px-4 py-10 sm:px-6 sm:py-12">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-8 text-center">
+            <h2 className="mb-2 text-xl font-bold text-foreground sm:text-2xl">What happens next</h2>
+            <p className="mx-auto max-w-2xl text-sm text-foreground/70">After you submit, our team follows this rhythm.</p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mx-auto mb-6 text-white font-bold text-xl">
-                1
+
+          <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+            {[
+              { n: '1', t: 'Confirmation', d: 'Acknowledgement within one business day.' },
+              { n: '2', t: 'Review', d: 'Brief assessed against studio capacity and scope.' },
+              { n: '3', t: 'Contact', d: 'Call or WhatsApp to align on visit or proposal.' },
+              { n: '4', t: 'Proposal', d: 'Timeline, phases, and investment bands documented.' },
+            ].map((step) => (
+              <div key={step.n} className="rounded-xl border border-border/60 bg-card p-4 text-center">
+                <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-accent text-sm font-bold text-white">{step.n}</div>
+                <h3 className="mb-1 text-sm font-semibold text-foreground">{step.t}</h3>
+                <p className="text-xs leading-relaxed text-foreground/70">{step.d}</p>
               </div>
-              <h3 className="text-lg font-semibold text-foreground mb-3">Confirmation</h3>
-              <p className="text-foreground/70 text-sm leading-relaxed">
-                You&apos;ll receive an email confirmation within 24 hours acknowledging your request.
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mx-auto mb-6 text-white font-bold text-xl">
-                2
-              </div>
-              <h3 className="text-lg font-semibold text-foreground mb-3">Review</h3>
-              <p className="text-foreground/70 text-sm leading-relaxed">
-                Our team will review your project details and prepare a preliminary assessment.
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mx-auto mb-6 text-white font-bold text-xl">
-                3
-              </div>
-              <h3 className="text-lg font-semibold text-foreground mb-3">Contact</h3>
-              <p className="text-foreground/70 text-sm leading-relaxed">
-                We&apos;ll contact you within 2-3 business days to discuss your project in detail.
-              </p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mx-auto mb-6 text-white font-bold text-xl">
-                4
-              </div>
-              <h3 className="text-lg font-semibold text-foreground mb-3">Proposal</h3>
-              <p className="text-foreground/70 text-sm leading-relaxed">
-                We&apos;ll provide a detailed proposal with timeline, budget, and next steps.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>

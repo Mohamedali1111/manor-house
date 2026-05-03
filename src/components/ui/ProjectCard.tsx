@@ -2,6 +2,8 @@
 
 import { memo } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 
 interface ProjectCardProps {
   name: string
@@ -11,6 +13,8 @@ interface ProjectCardProps {
   imageSrc: string
   imageAlt: string
   description: string
+  /** Navigates to `/portfolio/[projectId]` when set */
+  projectId?: string
 }
 
 export const ProjectCard = memo(function ProjectCard({
@@ -20,12 +24,15 @@ export const ProjectCard = memo(function ProjectCard({
   area,
   imageSrc,
   imageAlt,
-  description
+  description,
+  projectId,
 }: ProjectCardProps) {
-  return (
-    <div className="group relative overflow-hidden rounded-2xl sm:rounded-3xl bg-card border border-border/50 hover:border-accent/40 transition-all duration-500 hover:-translate-y-3 shadow-lg hover:shadow-2xl card-hover-safe border-glow">
-      {/* Enhanced Project Image */}
-      <div className="aspect-[4/3] relative overflow-hidden">
+  const shellClass =
+    'group relative block overflow-hidden rounded-xl border border-border/50 bg-card shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-accent/35 hover:shadow-lg card-hover-safe border-glow sm:rounded-2xl'
+
+  const body = (
+    <>
+      <div className="relative aspect-[4/3] overflow-hidden">
         <Image
           src={imageSrc}
           alt={imageAlt}
@@ -35,38 +42,54 @@ export const ProjectCard = memo(function ProjectCard({
           loading="lazy"
           quality={80}
         />
-        
-        {/* Enhanced Project Info Overlay - Safe for Text with Better Contrast */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/98 via-black/85 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-4 sm:p-6 lg:p-8">
-          <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-2 sm:mb-3 group-hover:text-accent transition-colors duration-300 hover:text-white hover:text-shadow-gold">{name}</h3>
-            <p className="text-white/95 text-sm sm:text-base mb-2 sm:mb-3 group-hover:text-white transition-colors duration-300 hover:text-white">{location}</p>
-            <div className="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm text-white/80 mb-3 sm:mb-4">
-              <span className="group-hover:text-accent transition-colors duration-300 hover:text-accent">{type}</span>
+
+        <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/98 via-black/85 to-transparent p-4 opacity-0 transition-opacity duration-500 group-hover:opacity-100 sm:p-6 lg:p-8">
+          <div className="translate-y-4 transform transition-transform duration-500 group-hover:translate-y-0">
+            <h3 className="mb-2 text-lg font-bold text-white drop-shadow-sm sm:text-xl lg:text-2xl">{name}</h3>
+            <p className="mb-2 text-sm text-white/95 sm:text-base">{location}</p>
+            <div className="mb-3 flex flex-wrap items-center gap-2 text-xs text-white/80 sm:gap-4 sm:text-sm">
+              <span className="text-white/90">{type}</span>
               <span className="text-accent">•</span>
-              <span className="group-hover:text-accent transition-colors duration-300 hover:text-accent">{area}</span>
+              <span className="text-white/90">{area}</span>
             </div>
-            <p className="text-white/90 text-sm sm:text-base leading-relaxed group-hover:text-white transition-colors duration-300 hover:text-white">{description}</p>
+            <p className="text-sm leading-relaxed text-white/90 sm:text-base">{description}</p>
           </div>
         </div>
-        
-        {/* Premium Corner Badge */}
-        <div className="absolute top-3 right-3 sm:top-4 sm:right-4 px-2 sm:px-3 py-1 bg-accent/95 backdrop-blur-sm text-white text-xs font-semibold rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform scale-75 group-hover:scale-100">
+
+        <div className="absolute right-3 top-3 rounded-full bg-accent/95 px-3 py-1 text-xs font-semibold text-white opacity-0 backdrop-blur-sm transition-all duration-500 group-hover:opacity-100 sm:right-4 sm:top-4">
           Featured
         </div>
       </div>
-      
-      {/* Enhanced Quick Info Bar - Safe on Hover with Better Visibility */}
-      <div className="p-4 sm:p-6 relative bg-card/95 group-hover:bg-card transition-colors duration-300">
-        <h3 className="text-lg sm:text-xl font-bold text-foreground mb-1 sm:mb-2 group-hover:text-accent transition-colors duration-300 hover:text-accent">{name}</h3>
-        <p className="text-sm sm:text-base text-foreground/80 group-hover:text-foreground/90 transition-colors duration-300 hover:text-foreground/90">{type} • {area}</p>
-        
-        {/* Premium Hover Indicator */}
-        <div className="absolute bottom-3 right-4 sm:bottom-4 sm:right-6 w-1.5 h-1.5 sm:w-2 sm:h-2 bg-accent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
+
+      <div className="relative bg-card/95 p-4 transition-colors duration-300 group-hover:bg-card sm:p-5">
+        <p className="mb-0.5 text-[10px] font-semibold uppercase tracking-wider text-accent">{location}</p>
+        <h3 className="mb-1 text-base font-bold text-foreground sm:text-lg">{name}</h3>
+        <p className="mb-3 text-xs text-foreground/75 sm:text-sm">
+          {type} • {area}
+        </p>
+        <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-foreground/70">{description}</p>
+
+        {projectId ? (
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent sm:text-sm">
+            View project
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
+          </span>
+        ) : null}
+
+        <div className="absolute bottom-4 right-5 h-2 w-2 animate-pulse rounded-full bg-accent opacity-0 transition-opacity duration-500 group-hover:opacity-100 sm:bottom-5 sm:right-6" />
       </div>
-      
-      {/* Enhanced Border Glow Effect */}
-      <div className="absolute inset-0 rounded-2xl sm:rounded-3xl border-2 border-accent/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-    </div>
+
+      <div className="pointer-events-none absolute inset-0 rounded-2xl border-2 border-accent/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:rounded-3xl" />
+    </>
   )
+
+  if (projectId) {
+    return (
+      <Link href={`/portfolio/${projectId}`} className={shellClass}>
+        {body}
+      </Link>
+    )
+  }
+
+  return <div className={shellClass}>{body}</div>
 })

@@ -25,8 +25,9 @@ export function Navbar() {
     { name: 'Home', href: '/' },
     { name: 'Services', href: '/services' },
     { name: 'Portfolio', href: '/portfolio' },
+    { name: 'Materials', href: '/materials' },
     { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' }
+    { name: 'Contact', href: '/contact' },
   ]
 
   const handleNavClick = (href: string) => {
@@ -45,33 +46,31 @@ export function Navbar() {
           : 'bg-white/95 backdrop-blur-xl border-b border-accent/20 shadow-lg'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex h-14 items-center justify-between sm:h-16">
             {/* Perfect Logo */}
             <div className="flex items-center space-x-2 sm:space-x-3 cursor-pointer group" onClick={() => handleNavClick('/')}>
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-accent to-highlight rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:shadow-accent/30 transition-all duration-300 group-hover:scale-105">
-                <span className="text-white font-bold text-lg sm:text-xl">M</span>
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-highlight shadow-md transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-lg group-hover:shadow-accent/25 sm:h-10 sm:w-10 sm:rounded-xl">
+                <span className="text-base font-bold text-white sm:text-lg">M</span>
               </div>
               <div className="hidden sm:block">
-                <h1 className={`text-xl sm:text-2xl font-bold transition-colors duration-300 ${
+                <h1 className={`text-lg font-bold transition-colors duration-300 sm:text-xl ${
                   isHomePage 
                     ? (isScrolled ? 'text-foreground' : 'text-white')
                     : 'text-foreground'
                 } group-hover:text-accent`}>
                   Manor House
                 </h1>
-                <p className="text-xs text-accent font-medium tracking-wider uppercase">
-                  Interior Design
-                </p>
+                <p className="text-[10px] font-medium uppercase tracking-wider text-accent">Interior Design</p>
               </div>
             </div>
 
             {/* Perfect Navigation */}
-            <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+            <div className="hidden items-center space-x-4 lg:flex xl:space-x-6">
               {navItems.map((item) => (
                 <button
                   key={item.name}
                   onClick={() => handleNavClick(item.href)}
-                  className={`relative font-medium text-sm xl:text-base transition-all duration-300 group ${
+                  className={`group relative text-sm font-medium transition-all duration-300 ${
                     isHomePage 
                       ? (isScrolled ? 'text-foreground hover:text-accent' : 'text-white hover:text-accent')
                       : 'text-foreground hover:text-accent'
@@ -87,7 +86,7 @@ export function Navbar() {
             <div className="hidden lg:block">
               <button
                 onClick={() => handleNavClick('/consultation')}
-                className="px-6 xl:px-8 py-2.5 xl:py-3 bg-accent hover:bg-highlight text-white font-semibold text-sm xl:text-base rounded-lg xl:rounded-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-lg hover:shadow-xl hover:shadow-accent/25"
+                className="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:bg-highlight hover:shadow-lg hover:shadow-accent/20 xl:px-5"
                 style={{ cursor: 'pointer' }}
               >
                 Get Quote

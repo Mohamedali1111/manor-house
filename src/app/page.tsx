@@ -1,30 +1,27 @@
 'use client'
 
-import { 
+import {
   Hero,
   ServicesPreviewSection,
+  ProcessSection,
   ProjectsPreviewSection,
   TestimonialsPreviewSection,
-  CTAPreviewSection
+  BrandsSection,
+  CTAPreviewSection,
+  NewsletterSection,
 } from '@/components/sections/home'
 
 export default function HomePage() {
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
       <Hero />
-      
-      {/* Services Preview Section */}
       <ServicesPreviewSection />
-      
-      {/* Projects Preview Section */}
+      <ProcessSection />
       <ProjectsPreviewSection />
-      
-      {/* Testimonials Preview Section */}
       <TestimonialsPreviewSection />
-      
-      {/* Call to Action Section */}
+      <BrandsSection />
       <CTAPreviewSection />
+      <NewsletterSection />
     </div>
   )
 }

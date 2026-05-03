@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { PageHero } from '@/components/layout/PageHero'
 import { ProjectCard } from '@/components/ui/ProjectCard'
 import { PremiumButton } from '@/components/ui/PremiumButton'
 import { projects } from '@/data/projects'
@@ -9,23 +10,16 @@ export default function PortfolioPage() {
   const router = useRouter()
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative py-20 sm:py-24 lg:py-32 px-4 sm:px-6 bg-gradient-to-br from-card via-muted to-background">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 sm:px-6 py-1.5 sm:py-2 bg-accent/10 border border-accent/20 rounded-full mb-6">
-              <span className="text-accent text-xs sm:text-sm font-semibold">Our Portfolio</span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Featured <span className="gradient-text-gold">Projects</span>
-            </h1>
-            <p className="text-lg sm:text-xl text-foreground/70 max-w-3xl mx-auto leading-relaxed">
-              Discover our latest interior design transformations that showcase innovation, creativity, and exceptional craftsmanship.
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="min-h-screen bg-background">
+      <PageHero
+        eyebrow="Portfolio"
+        title={
+          <>
+            Proof, <span className="gradient-text-gold">Composed</span>
+          </>
+        }
+        description="A curated selection of delivered residences across Egypt — each page includes scope narrative, gallery rhythm, and honest design intent."
+      />
 
       {/* Projects Grid */}
       <section className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 bg-background">
@@ -33,7 +27,8 @@ export default function PortfolioPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 xl:gap-10">
             {projects.map((project) => (
               <ProjectCard
-                key={project.name}
+                key={project.id}
+                projectId={project.id}
                 name={project.name}
                 location={project.location}
                 type={project.type}

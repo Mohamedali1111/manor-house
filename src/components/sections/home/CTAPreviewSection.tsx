@@ -7,86 +7,32 @@ export function CTAPreviewSection() {
   const router = useRouter()
 
   return (
-    <section className="py-20 sm:py-24 lg:py-32 px-4 sm:px-6 relative overflow-hidden">
-      {/* Enhanced Background Layers */}
-      <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-highlight/5"></div>
-      <div className="absolute inset-0 bg-gradient-to-r from-accent/8 via-highlight/15 to-accent/8"></div>
-      <div className="absolute inset-0 bg-[url('/subtle-light-pattern.png')] opacity-10"></div>
-      
-      {/* Premium Radial Overlay */}
-      <div className="absolute inset-0 bg-radial-gradient from-accent/10 via-transparent to-transparent"></div>
-      
-      {/* Floating Elements */}
-      <div className="absolute top-10 left-10 w-32 h-32 bg-accent/5 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-10 right-10 w-40 h-40 bg-highlight/5 rounded-full blur-3xl animate-pulse animation-delay-1000"></div>
-      
-      <div className="relative z-10 max-w-5xl mx-auto">
-        {/* Premium Badge */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center px-6 py-2 bg-accent/10 border border-accent/20 rounded-full mb-6 premium-badge">
-            <span className="text-accent text-sm font-semibold hover-text-enhance">Get Started</span>
-          </div>
+    <section className="relative overflow-hidden px-4 py-12 sm:px-6 sm:py-16">
+      <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-highlight/5" />
+      <div className="absolute inset-0 bg-gradient-to-r from-accent/8 via-highlight/12 to-accent/8" />
+
+      <div className="relative z-10 mx-auto max-w-3xl text-center lg:max-w-4xl">
+        <div className="mb-2 inline-flex items-center rounded-full border border-accent/20 bg-accent/10 px-3 py-1">
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-accent">Next step</span>
         </div>
-        
-        {/* Enhanced Heading */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-6 sm:mb-8 leading-tight tracking-tight hover-text-enhance">
-            Ready to Transform Your <span className="gradient-text-gold">Space</span>?
-          </h2>
-          <p className="text-lg sm:text-xl lg:text-2xl text-foreground/80 max-w-3xl mx-auto leading-relaxed font-light hover-text-enhance">
-            Let&apos;s create an interior that reflects your personality and exceeds your expectations. 
-            Our expert team is ready to bring your vision to life.
-          </p>
-        </div>
-        
-        {/* Enhanced CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center items-center mb-12">
-          <PremiumButton
-            onClick={() => router.push('/contact')}
-            size="lg"
-            className="border-glow group"
-          >
-            <span className="flex items-center gap-3">
-              Start Your Project
-              <span className="group-hover:translate-x-1 transition-transform duration-300 text-xl">→</span>
-            </span>
+        <h2 className="mb-2 text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+          Ready to transform your <span className="gradient-text-gold">space</span>?
+        </h2>
+        <p className="mx-auto mb-8 max-w-lg text-sm text-foreground/75 sm:text-base">Let&apos;s bring your vision to life.</p>
+
+        <div className="mx-auto mb-6 flex max-w-md flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4">
+          <PremiumButton size="md" className="border-glow w-full sm:w-auto" onClick={() => router.push('/booking')}>
+            Book now
           </PremiumButton>
-          <PremiumButton
-            onClick={() => router.push('/consultation')}
-            variant="outline"
-            size="lg"
-            className="border-glow group"
-          >
-            <span className="flex items-center gap-3">
-              Free Consultation
-              <span className="group-hover:translate-x-1 transition-transform duration-300 text-xl">→</span>
-            </span>
+          <PremiumButton size="md" variant="outline" className="border-glow w-full sm:w-auto" onClick={() => router.push('/contact')}>
+            Contact us
           </PremiumButton>
         </div>
-        
-        {/* Enhanced Trust Indicators */}
-        <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 text-sm sm:text-base text-foreground/70">
-          <div className="flex items-center gap-3 px-4 py-2 glass-premium rounded-full border border-accent/20 hover:border-accent/40 transition-all duration-300 hover-lift">
-            <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
-            <span className="hover-text-enhance font-medium">Free consultation</span>
-          </div>
-          <div className="flex items-center gap-3 px-4 py-2 glass-premium rounded-full border border-accent/20 hover:border-accent/40 transition-all duration-300 hover-lift">
-            <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
-            <span className="hover-text-enhance font-medium">No commitment</span>
-          </div>
-          <div className="flex items-center gap-3 px-4 py-2 glass-premium rounded-full border border-accent/20 hover:border-accent/40 transition-all duration-300 hover-lift">
-            <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
-            <span className="hover-text-enhance font-medium">24/7 support</span>
-          </div>
-        </div>
-        
-        {/* Additional Premium Info */}
-        <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-2 text-foreground/60 text-sm">
-            <div className="w-1 h-1 bg-accent rounded-full"></div>
-            <span>Trusted by 500+ satisfied clients worldwide</span>
-            <div className="w-1 h-1 bg-accent rounded-full"></div>
-          </div>
+
+        <div className="flex flex-wrap justify-center gap-2 text-[11px] text-foreground/60 sm:text-xs">
+          <span className="rounded-full border border-accent/15 bg-card/90 px-3 py-1">Cairo · Alexandria · New Cairo</span>
+          <span className="rounded-full border border-accent/15 bg-card/90 px-3 py-1">Consultation-first</span>
+          <span className="rounded-full border border-accent/15 bg-card/90 px-3 py-1">Supervised execution</span>
         </div>
       </div>
     </section>
