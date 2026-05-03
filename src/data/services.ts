@@ -1,3 +1,5 @@
+import { unsplashPhoto } from '@/lib/images'
+
 export interface Service {
   id: string
   title: string
@@ -8,14 +10,10 @@ export interface Service {
   imageAlt: string
 }
 
-const interiorImg =
-  'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80'
-const electricalImg =
-  'https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1200&q=80'
-const planningImg =
-  'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80'
-const consultImg =
-  'https://images.unsplash.com/photo-1497366216548-375260702972?auto=format&fit=crop&w=1200&q=80'
+const interiorImg = unsplashPhoto('photo-1618221195710-dd6b41faaea6', 900, 68)
+const electricalImg = unsplashPhoto('photo-1621905251918-48416bd8575a', 900, 68)
+const planningImg = unsplashPhoto('photo-1503387762-592deb58ef4e', 900, 68)
+const consultImg = unsplashPhoto('photo-1497366216548-375260702972', 900, 68)
 
 export const services: Service[] = [
   {

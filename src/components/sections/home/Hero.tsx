@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import { blurPlaceholderTiny, heroImageSrc } from '@/lib/images'
 
 export function Hero() {
   const router = useRouter()
@@ -11,11 +12,14 @@ export function Hero() {
       <div className="absolute inset-0">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=2000&q=82"
+            src={heroImageSrc}
             alt="Luxury interior — Manor House"
             fill
             priority
-            quality={85}
+            fetchPriority="high"
+            placeholder="blur"
+            blurDataURL={blurPlaceholderTiny}
+            quality={68}
             className="object-cover object-center"
             sizes="100vw"
           />

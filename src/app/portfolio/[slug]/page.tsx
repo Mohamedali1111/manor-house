@@ -46,7 +46,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             priority
             className="object-cover"
             sizes="100vw"
-            quality={88}
+            quality={72}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/55 to-black/35" />
         </div>
@@ -199,7 +199,15 @@ export default async function ProjectDetailPage({ params }: Props) {
             {project.gallery.map((item, idx) => (
               <figure key={`${project.id}-g-${idx}`} className="overflow-hidden rounded-xl border border-border/50 bg-card">
                 <div className="relative aspect-[4/3]">
-                  <Image src={item.src} alt={item.alt} fill className="object-cover" sizes="(max-width: 640px) 100vw, 50vw" />
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                    quality={68}
+                    loading="lazy"
+                  />
                 </div>
                 <figcaption className="border-t border-border/40 px-3 py-2 text-xs text-foreground/65">{item.caption}</figcaption>
               </figure>

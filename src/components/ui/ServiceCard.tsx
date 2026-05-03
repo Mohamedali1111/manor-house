@@ -31,7 +31,7 @@ export const ServiceCard = memo(function ServiceCard({
           className="object-cover object-center"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           loading="lazy"
-          quality={75}
+          quality={65}
         />
       </div>
       

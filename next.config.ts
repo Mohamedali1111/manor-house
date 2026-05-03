@@ -24,8 +24,8 @@ const nextConfig: NextConfig = {
     // Image sizes for different breakpoints
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     
-    // Minimum cache TTL
-    minimumCacheTTL: 60,
+    /** Remote optimized images cache longer — fewer repeat Unsplash fetches at the edge */
+    minimumCacheTTL: 86400,
     
     // Enable dangerouslyAllowSVG for better SVG handling
     dangerouslyAllowSVG: true,

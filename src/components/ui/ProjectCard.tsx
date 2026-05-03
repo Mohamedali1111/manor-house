@@ -37,10 +37,10 @@ export const ProjectCard = memo(function ProjectCard({
           src={imageSrc}
           alt={imageAlt}
           fill
-          className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
-          sizes="(max-width: 1024px) 100vw, 33vw"
+          className="object-cover object-center transition-transform duration-700 motion-reduce:transition-none group-hover:scale-110 motion-reduce:group-hover:scale-100"
+          sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
           loading="lazy"
-          quality={80}
+          quality={68}
         />
 
         <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/98 via-black/85 to-transparent p-4 opacity-0 transition-opacity duration-500 group-hover:opacity-100 sm:p-6 lg:p-8">

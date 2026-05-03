@@ -1,3 +1,5 @@
+import { unsplashPhoto } from '@/lib/images'
+
 export interface ProjectGalleryItem {
   src: string
   alt: string
@@ -46,23 +48,16 @@ export interface Project {
   phases: ProjectPhase[]
 }
 
+/** Cover + gallery sources — modest Unsplash params; Next/Image adds responsive formats. */
 const img = {
-  villa:
-    'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1920&q=80',
-  penthouse:
-    'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1920&q=80',
-  compound:
-    'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1920&q=80',
-  detailA:
-    'https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=1600&q=80',
-  detailB:
-    'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=1600&q=80',
-  detailC:
-    'https://images.unsplash.com/photo-1615529328331-f8917597711f?auto=format&fit=crop&w=1600&q=80',
-  detailD:
-    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80',
-  detailE:
-    'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1600&q=80',
+  villa: unsplashPhoto('photo-1618221195710-dd6b41faaea6', 1400, 70),
+  penthouse: unsplashPhoto('photo-1600210492486-724fe5c67fb0', 1400, 70),
+  compound: unsplashPhoto('photo-1616486338812-3dadae4b4ace', 1400, 70),
+  detailA: unsplashPhoto('photo-1615873968403-89e068629265', 1100, 68),
+  detailB: unsplashPhoto('photo-1618219908412-a29a1bb7b86e', 1100, 68),
+  detailC: unsplashPhoto('photo-1615529328331-f8917597711f', 1100, 68),
+  detailD: unsplashPhoto('photo-1600607687939-ce8a6c25118c', 1100, 68),
+  detailE: unsplashPhoto('photo-1600566753086-00f18fb6b3ea', 1100, 68),
 }
 
 export const projects: Project[] = [
@@ -121,7 +116,7 @@ export const projects: Project[] = [
     phases: [
       { name: 'Discovery', description: 'Measured survey, lifestyle interviews, and baseline budget bands.' },
       { name: 'Concept & DD', description: 'Layouts, mood alignment, joinery intent, and fixture schedules for pricing.' },
-      { name: 'Execution', description: 'Weekly supervision, mock-ups for stone and metal, snag lists withphoto proof.' },
+      { name: 'Execution', description: 'Weekly supervision, mock-ups for stone and metal, snag lists with photo proof.' },
       { name: 'Handover', description: 'Scene tuning, styling layers, maintenance binder for AV and finishes.' },
     ],
     gallery: [

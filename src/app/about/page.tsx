@@ -6,9 +6,9 @@ import { PageHero } from '@/components/layout/PageHero'
 import { PremiumButton } from '@/components/ui/PremiumButton'
 import { Award, Gem, Users } from 'lucide-react'
 import { site } from '@/data/site'
+import { unsplashPhoto } from '@/lib/images'
 
-const heroImage =
-  'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=1600&q=80'
+const heroImage = unsplashPhoto('photo-1618219908412-a29a1bb7b86e', 1200, 70)
 
 export default function AboutPage() {
   const router = useRouter()
@@ -28,7 +28,14 @@ export default function AboutPage() {
       <section className="border-b border-accent/15 px-4 py-16 sm:px-6 sm:py-20">
         <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2 lg:gap-16">
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border/60 shadow-xl">
-            <Image src={heroImage} alt="Manor House interior atmosphere" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" />
+            <Image
+              src={heroImage}
+              alt="Manor House interior atmosphere"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              quality={72}
+            />
             <div className="absolute inset-0 bg-gradient-to-tr from-black/25 via-transparent to-transparent" />
           </div>
           <div>

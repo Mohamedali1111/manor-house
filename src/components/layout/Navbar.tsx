@@ -17,6 +17,7 @@ export function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30)
     }
+    handleScroll()
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -38,12 +39,15 @@ export function Navbar() {
   return (
     <>
       {/* Perfect Premium Navbar */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isHomePage 
-          ? (isScrolled 
-              ? 'bg-white/95 backdrop-blur-xl border-b border-accent/20 shadow-lg' 
-              : 'bg-black/20 backdrop-blur-md border-b border-white/10')
-          : 'bg-white/95 backdrop-blur-xl border-b border-accent/20 shadow-lg'
+      <nav
+        aria-label="Primary navigation"
+        className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,box-shadow,border-color] duration-300 ${
+        isHomePage
+          ? isScrolled
+            ? 'border-b border-accent/20 bg-white/95 shadow-lg backdrop-blur-xl'
+            : /* Hero top: no backdrop-blur — avoids muddy grey; warm dark + gold edge matches brand */
+              'border-b border-accent/35 bg-gradient-to-b from-black/75 via-black/55 to-black/35 shadow-[0_12px_40px_rgba(0,0,0,0.35)]'
+          : 'border-b border-accent/20 bg-white/95 shadow-lg backdrop-blur-xl'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-14 items-center justify-between sm:h-16">
@@ -53,14 +57,26 @@ export function Navbar() {
                 <span className="text-base font-bold text-white sm:text-lg">M</span>
               </div>
               <div className="hidden sm:block">
-                <h1 className={`text-lg font-bold transition-colors duration-300 sm:text-xl ${
-                  isHomePage 
-                    ? (isScrolled ? 'text-foreground' : 'text-white')
-                    : 'text-foreground'
-                } group-hover:text-accent`}>
+                <h1
+                  className={`text-lg font-bold transition-colors duration-300 sm:text-xl ${
+                    isHomePage
+                      ? isScrolled
+                        ? 'text-foreground'
+                        : 'text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]'
+                      : 'text-foreground'
+                  } group-hover:text-accent`}
+                >
                   Manor House
                 </h1>
-                <p className="text-[10px] font-medium uppercase tracking-wider text-accent">Interior Design</p>
+                <p
+                  className={`text-[10px] font-semibold uppercase tracking-wider ${
+                    isHomePage && !isScrolled
+                      ? 'text-highlight drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)]'
+                      : 'text-accent'
+                  }`}
+                >
+                  Interior Design
+                </p>
               </div>
             </div>
 
@@ -71,8 +87,10 @@ export function Navbar() {
                   key={item.name}
                   onClick={() => handleNavClick(item.href)}
                   className={`group relative text-sm font-medium transition-all duration-300 ${
-                    isHomePage 
-                      ? (isScrolled ? 'text-foreground hover:text-accent' : 'text-white hover:text-accent')
+                    isHomePage
+                      ? isScrolled
+                        ? 'text-foreground hover:text-accent'
+                        : 'text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)] hover:text-highlight'
                       : 'text-foreground hover:text-accent'
                   }`}
                 >
@@ -96,12 +114,12 @@ export function Navbar() {
             {/* Perfect Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`lg:hidden p-2.5 rounded-lg transition-all duration-300 border ${
-                isHomePage 
-                  ? (isScrolled 
-                      ? 'bg-accent/10 hover:bg-accent/20 border-accent/20' 
-                      : 'bg-white/20 hover:bg-white/30 border-white/30')
-                  : 'bg-accent/10 hover:bg-accent/20 border-accent/20'
+              className={`lg:hidden rounded-lg border p-2.5 transition-all duration-300 ${
+                isHomePage
+                  ? isScrolled
+                    ? 'border-accent/20 bg-accent/10 hover:bg-accent/20'
+                    : 'border-accent/40 bg-black/35 hover:bg-black/50 hover:border-accent/55'
+                  : 'border-accent/20 bg-accent/10 hover:bg-accent/20'
               }`}
               style={{ cursor: 'pointer' }}
               aria-label="Toggle mobile menu"

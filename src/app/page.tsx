@@ -1,27 +1,20 @@
-'use client'
+import dynamic from 'next/dynamic'
+import { Hero } from '@/components/sections/home/Hero'
+import { HomeBelowFallback } from '@/components/layout/HomeBelowFallback'
 
-import {
-  Hero,
-  ServicesPreviewSection,
-  ProcessSection,
-  ProjectsPreviewSection,
-  TestimonialsPreviewSection,
-  BrandsSection,
-  CTAPreviewSection,
-  NewsletterSection,
-} from '@/components/sections/home'
+const HomeBelowFold = dynamic(
+  () => import('@/components/sections/home/HomeBelowFold').then((m) => m.HomeBelowFold),
+  {
+    loading: () => <HomeBelowFallback />,
+    ssr: true,
+  }
+)
 
 export default function HomePage() {
   return (
     <div className="min-h-screen">
       <Hero />
-      <ServicesPreviewSection />
-      <ProcessSection />
-      <ProjectsPreviewSection />
-      <TestimonialsPreviewSection />
-      <BrandsSection />
-      <CTAPreviewSection />
-      <NewsletterSection />
+      <HomeBelowFold />
     </div>
   )
 }

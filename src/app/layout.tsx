@@ -1,15 +1,23 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Poppins } from 'next/font/google'
 import './globals.css'
-import { PerformanceMonitor } from '@/components/common/PerformanceMonitor'
-import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
+import { Navbar } from '@/components/layout/Navbar'
+import { SkipLink } from '@/components/layout/SkipLink'
 
 const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
   variable: '--font-poppins',
+  preload: true,
 })
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#fafafa',
+}
 
 export const metadata: Metadata = {
   title: 'Manor House - Premium Interior Design',
@@ -25,11 +33,12 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://manorhouse.com'),
+  metadataBase: new URL('https://manorhouse.co.eg'),
   openGraph: {
     title: 'Manor House - Premium Interior Design',
-    description: 'Creating timeless spaces that inspire and delight. Award-winning interior design services.',
-    url: 'https://manorhouse.com',
+    description:
+      'Luxury interior design in Egypt — Cairo, Alexandria, and New Cairo. Timeless spaces, supervised execution, and specification-grade materials.',
+    url: 'https://manorhouse.co.eg',
     siteName: 'Manor House Interior Design',
     images: [
       {
@@ -45,7 +54,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Manor House - Premium Interior Design',
-    description: 'Creating timeless spaces that inspire and delight. Award-winning interior design services.',
+    description:
+      'Luxury interior design in Egypt — Cairo, Alexandria, and New Cairo. Timeless spaces and disciplined execution.',
     images: ['/og-image.jpg'],
   },
   robots: {
@@ -68,13 +78,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={poppins.variable}>
+      <head>
+        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+      </head>
       <body className={`${poppins.className} antialiased bg-background text-foreground`}>
+        <SkipLink />
         <Navbar />
-        <main className="min-h-screen pt-14 sm:pt-16">
+        <main id="main-content" className="min-h-screen pt-14 sm:pt-16" tabIndex={-1}>
           {children}
         </main>
         <Footer />
-        <PerformanceMonitor />
       </body>
     </html>
   )

@@ -6,9 +6,6 @@ export { PageHero } from './layout/PageHero'
 // Home Section Components
 export * from './sections/home'
 
-// Common Components
-export { PerformanceMonitor } from './common/PerformanceMonitor'
-
 // UI Components
 export { PremiumButton } from './ui/PremiumButton'
 export { ServiceCard } from './ui/ServiceCard'

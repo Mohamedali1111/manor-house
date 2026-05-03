@@ -75,6 +75,18 @@
     }
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in-up {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+
+    .premium-button::before {
+      transition: none;
+    }
+  }
+
   /* Enhanced Premium Button Hover Effects */
   .premium-button {
     position: relative;
